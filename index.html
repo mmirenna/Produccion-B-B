@@ -9,239 +9,144 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg:      #f0ede8;
-  --bg2:     #e8e4de;
-  --bg3:     #dedad3;
-  --white:   #faf9f7;
-  --border:  #d4cfc8;
-  --border2: #c0b9b0;
-  --text:    #1c1a17;
-  --text2:   #6b6660;
-  --text3:   #a09b95;
-  --ink:     #1c1a17;
-  --orange:  #d4450c;
-  --green:   #1a6b3c;
-  --green-l: #e6f4ec;
-  --amber:   #9a6200;
-  --amber-l: #fef5e0;
-  --red:     #b91c1c;
-  --red-l:   #fde8e8;
-  --blue:    #1d4ed8;
-  --blue-l:  #e8eeff;
-  --r:       8px;
-  --rl:      12px;
-  --shadow:  0 1px 4px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
-  --font:    'DM Sans', sans-serif;
-  --head:    'Syne', sans-serif;
-  --mono:    'DM Mono', monospace;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f0ede8;--bg2:#e8e4de;--bg3:#dedad3;
+  --white:#faf9f7;--border:#d4cfc8;--border2:#c0b9b0;
+  --text:#1c1a17;--text2:#6b6660;--text3:#a09b95;--ink:#1c1a17;
+  --orange:#d4450c;--green:#1a6b3c;--green-l:#e6f4ec;
+  --amber:#9a6200;--amber-l:#fef5e0;
+  --red:#b91c1c;--red-l:#fde8e8;
+  --blue:#1d4ed8;--blue-l:#e8eeff;
+  --r:8px;--rl:12px;
+  --shadow:0 1px 4px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  --font:'DM Sans',sans-serif;--head:'Syne',sans-serif;--mono:'DM Mono',monospace;
 }
-html { font-size: 14px; }
-body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+html{font-size:14px}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh}
 
-/* ── Header ── */
-.header {
-  background: var(--ink); color: #fff;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 28px; height: 56px; position: sticky; top: 0; z-index: 50;
-}
-.header-brand { display: flex; align-items: center; gap: 12px; }
-.brand-mark {
-  width: 32px; height: 32px; border-radius: 6px;
-  background: var(--orange); display: flex; align-items: center;
-  justify-content: center; font-family: var(--head);
-  font-size: 15px; font-weight: 700; color: #fff;
-}
-.brand-name { font-family: var(--head); font-size: 15px; font-weight: 600; letter-spacing: .01em; }
-.brand-sub { font-size: 11px; color: rgba(255,255,255,.4); margin-top: 1px; }
-.header-nav { display: flex; gap: 4px; }
-.nav-link {
-  padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500;
-  color: rgba(255,255,255,.5); text-decoration: none; transition: all .15s;
-  background: none; border: none; cursor: pointer; font-family: var(--font);
-}
-.nav-link:hover { color: #fff; background: rgba(255,255,255,.08); }
-.nav-link.active { color: #fff; background: rgba(255,255,255,.12); }
-.header-right { display: flex; align-items: center; gap: 10px; }
-.refresh-btn {
-  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
-  color: rgba(255,255,255,.7); padding: 5px 12px; border-radius: 6px;
-  font-family: var(--font); font-size: 12px; cursor: pointer; transition: all .15s;
-}
-.refresh-btn:hover { background: rgba(255,255,255,.18); color: #fff; }
-.last-upd { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,.3); }
+/* Header */
+.header{background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:56px;position:sticky;top:0;z-index:50}
+.header-brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:32px;height:32px;border-radius:6px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:15px;font-weight:700;color:#fff}
+.brand-name{font-family:var(--head);font-size:15px;font-weight:600}
+.brand-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
+.header-nav{display:flex;gap:4px}
+.nav-link{padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;transition:all .15s;background:none;border:none;cursor:pointer;font-family:var(--font)}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-link.active{color:#fff;background:rgba(255,255,255,.12)}
+.header-right{display:flex;align-items:center;gap:10px}
+.refresh-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:5px 12px;border-radius:6px;font-family:var(--font);font-size:12px;cursor:pointer;transition:all .15s}
+.refresh-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+.last-upd{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3)}
 
-/* ── Filtros ── */
-.filter-bar {
-  background: var(--white); border-bottom: 1px solid var(--border);
-  padding: 10px 28px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-}
-.filter-label { font-size: 11px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; }
-select.filter-sel {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 6px; padding: 5px 28px 5px 10px; font-family: var(--font);
-  font-size: 12px; color: var(--text); outline: none; cursor: pointer;
-  appearance: none; -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b6660' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 9px center;
-  transition: border-color .15s;
-}
-select.filter-sel:focus { border-color: var(--ink); }
-.filter-sep { width: 1px; height: 18px; background: var(--border); }
+/* Filtros */
+.filter-bar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.filter-label{font-size:11px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.06em}
+select.filter-sel{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:5px 28px 5px 10px;font-family:var(--font);font-size:12px;color:var(--text);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b6660' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;transition:border-color .15s}
+select.filter-sel:focus{border-color:var(--ink)}
+.filter-sep{width:1px;height:18px;background:var(--border)}
 
-/* ── Shell ── */
-.shell { max-width: 1400px; margin: 0 auto; padding: 24px 28px 60px; }
+/* Shell */
+.shell{max-width:1400px;margin:0 auto;padding:24px 28px 60px}
 
-/* ── Section ── */
-.sec-title {
-  font-family: var(--head); font-size: 11px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .12em; color: var(--text3);
-  margin: 28px 0 12px;
-}
-.sec-title:first-child { margin-top: 0; }
+/* Section */
+.sec-title{font-family:var(--head);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin:28px 0 12px}
+.sec-title:first-child{margin-top:0}
 
-/* ── KPI cards ── */
-.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 10px; }
-.kpi {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--rl); padding: 16px 18px;
-  box-shadow: var(--shadow); transition: border-color .15s;
-}
-.kpi:hover { border-color: var(--border2); }
-.kpi-label { font-size: 11px; color: var(--text2); margin-bottom: 6px; font-weight: 500; }
-.kpi-value { font-family: var(--head); font-size: 28px; font-weight: 700; letter-spacing: -1px; line-height: 1; }
-.kpi-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
-.kpi-value.orange { color: var(--orange); }
-.kpi-value.green  { color: var(--green); }
-.kpi-value.amber  { color: var(--amber); }
-.kpi-value.red    { color: var(--red); }
+/* KPIs */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:16px 18px;box-shadow:var(--shadow)}
+.kpi-label{font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:500}
+.kpi-value{font-family:var(--head);font-size:26px;font-weight:700;letter-spacing:-1px;line-height:1}
+.kpi-sub{font-size:11px;color:var(--text3);margin-top:4px}
+.kpi-value.orange{color:var(--orange)}.kpi-value.green{color:var(--green)}
+.kpi-value.amber{color:var(--amber)}.kpi-value.red{color:var(--red)}
 
-/* ── Grid ── */
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-.full  { grid-column: 1 / -1; }
-@media(max-width:900px) { .grid2,.grid3 { grid-template-columns: 1fr; } }
+/* Grid */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.full{grid-column:1/-1}
+@media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
 
-/* ── Box ── */
-.box {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--rl); padding: 20px; box-shadow: var(--shadow);
-}
-.box-header {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  margin-bottom: 16px; gap: 12px;
-}
-.box-title { font-family: var(--head); font-size: 13px; font-weight: 600; color: var(--text); }
-.box-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
-.box-total {
-  font-family: var(--mono); font-size: 13px; font-weight: 500;
-  background: var(--bg); border: 1px solid var(--border);
-  padding: 4px 10px; border-radius: 6px; color: var(--text); white-space: nowrap;
-}
+/* Box */
+.box{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:20px;box-shadow:var(--shadow)}
+.box-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;gap:12px}
+.box-title{font-family:var(--head);font-size:13px;font-weight:600;color:var(--text)}
+.box-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.box-total{font-family:var(--mono);font-size:13px;font-weight:500;background:var(--bg);border:1px solid var(--border);padding:4px 10px;border-radius:6px;color:var(--text);white-space:nowrap}
 
-/* ── Charts ── */
-.chart-wrap { position: relative; width: 100%; }
-.chart-wrap.h200 { height: 200px; }
-.chart-wrap.h240 { height: 240px; }
-.chart-wrap.h280 { height: 280px; }
+/* Charts */
+.chart-wrap{position:relative;width:100%}
+.h180{height:180px}.h220{height:220px}.h260{height:260px}
 
-/* ── Tabla ── */
-.tbl-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-th {
-  text-align: left; padding: 8px 10px;
-  border-bottom: 1px solid var(--border2);
-  font-size: 10px; font-weight: 600; text-transform: uppercase;
-  letter-spacing: .07em; color: var(--text3); white-space: nowrap;
-  font-family: var(--head);
-}
-td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--text); }
-tr:last-child td { border-bottom: none; }
-tr:hover td { background: var(--bg); }
-.td-r { text-align: right; font-family: var(--mono); font-size: 11px; }
-.td-c { text-align: center; }
+/* Table */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border2);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);white-space:nowrap;font-family:var(--head)}
+td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg)}
+.td-r{text-align:right;font-family:var(--mono);font-size:11px}
+.td-c{text-align:center}
 
-/* ── Badges ── */
-.badge {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 10px; font-weight: 600; padding: 3px 8px;
-  border-radius: 20px; white-space: nowrap; font-family: var(--head);
-  letter-spacing: .03em;
-}
-.badge-green  { background: var(--green-l); color: var(--green); }
-.badge-amber  { background: var(--amber-l); color: var(--amber); }
-.badge-red    { background: var(--red-l);   color: var(--red); }
-.badge-blue   { background: var(--blue-l);  color: var(--blue); }
-.badge-gray   { background: var(--bg2);     color: var(--text2); }
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;white-space:nowrap;font-family:var(--head);letter-spacing:.03em}
+.badge-green{background:var(--green-l);color:var(--green)}
+.badge-amber{background:var(--amber-l);color:var(--amber)}
+.badge-red{background:var(--red-l);color:var(--red)}
+.badge-blue{background:var(--blue-l);color:var(--blue)}
+.badge-gray{background:var(--bg2);color:var(--text2)}
 
-/* ── Avance bar ── */
-.prog-wrap { display: flex; align-items: center; gap: 8px; min-width: 120px; }
-.prog-track { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; }
-.prog-fill  { height: 5px; border-radius: 3px; transition: width .3s; }
-.prog-pct   { font-family: var(--mono); font-size: 10px; color: var(--text2); min-width: 34px; text-align: right; }
+/* Avance */
+.prog-wrap{display:flex;align-items:center;gap:8px;min-width:110px}
+.prog-track{flex:1;height:5px;background:var(--bg3);border-radius:3px}
+.prog-fill{height:5px;border-radius:3px;transition:width .3s}
+.prog-pct{font-family:var(--mono);font-size:10px;color:var(--text2);min-width:38px;text-align:right}
 
-/* ── Desvío section ── */
-.desvio-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 6px; }
-.desvio-cell {
-  background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
-  padding: 8px 10px; text-align: center;
-}
-.desvio-area { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); margin-bottom: 4px; font-family: var(--head); }
-.desvio-val  { font-family: var(--mono); font-size: 13px; font-weight: 500; }
-.desvio-cell.d-green { background: var(--green-l); border-color: #b7dfc8; }
-.desvio-cell.d-amber { background: var(--amber-l); border-color: #f5d9a8; }
-.desvio-cell.d-red   { background: var(--red-l);   border-color: #f3c4be; }
-.desvio-cell.d-green .desvio-val { color: var(--green); }
-.desvio-cell.d-amber .desvio-val { color: var(--amber); }
-.desvio-cell.d-red   .desvio-val { color: var(--red); }
+/* Desvío cell inline */
+.dcell{display:inline-block;min-width:68px;padding:4px 7px;border-radius:5px;text-align:center;border:1px solid var(--border)}
+.dcell.dg{background:var(--green-l);border-color:#b7dfc8}
+.dcell.da{background:var(--amber-l);border-color:#f5d9a8}
+.dcell.dr{background:var(--red-l);border-color:#f3c4be}
+.dcell-top{font-size:9px;color:var(--text3);font-family:var(--head);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.dcell-val{font-family:var(--mono);font-size:12px;font-weight:500}
+.dg .dcell-val{color:var(--green)}.da .dcell-val{color:var(--amber)}.dr .dcell-val{color:var(--red)}
 
-/* ── Legend ── */
-.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
-.leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text2); }
-.leg-dot  { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+/* Materiales lista */
+.mat-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.mat-row:last-child{border-bottom:none}
+.mat-name{color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px}
+.mat-val{font-family:var(--mono);font-weight:500;flex-shrink:0}
 
-/* ── Expandable ── */
-.expand-btn {
-  background: none; border: none; cursor: pointer; font-size: 11px;
-  color: var(--orange); font-family: var(--font); padding: 0;
-  text-decoration: underline; text-underline-offset: 2px;
-}
-.expand-content { display: none; margin-top: 12px; }
-.expand-content.open { display: block; }
+/* Desvíos análisis */
+.desvio-blk{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.desvio-blk:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.desvio-blk-title{font-size:12px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.desvio-cards{display:flex;flex-wrap:wrap;gap:8px}
+.desvio-card{background:var(--red-l);border:1px solid #f3c4be;border-radius:8px;padding:10px 14px;min-width:130px}
+.desvio-card-area{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--red);font-family:var(--head);margin-bottom:4px}
+.desvio-card-val{font-family:var(--mono);font-size:16px;font-weight:500;color:var(--red)}
+.desvio-card-sub{font-size:10px;color:var(--red);margin-top:2px}
 
-/* ── Loading ── */
-.loading-overlay {
-  position: fixed; inset: 0; background: var(--bg);
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 14px; z-index: 200;
-  transition: opacity .3s;
-}
-.loading-overlay.hidden { opacity: 0; pointer-events: none; }
-.spinner {
-  width: 28px; height: 28px; border-radius: 50%;
-  border: 2px solid var(--border2); border-top-color: var(--orange);
-  animation: spin .7s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.loading-text { font-size: 13px; color: var(--text2); font-family: var(--head); }
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
+.leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
 
-/* ── Error ── */
-.error-bar {
-  background: var(--red-l); border: 1px solid #f3c4be; border-radius: var(--r);
-  padding: 10px 14px; font-size: 12px; color: var(--red);
-  margin-bottom: 16px; display: none;
-}
-.error-bar.show { display: block; }
+/* Note */
+.note{font-size:11px;color:var(--text3);margin-top:10px;font-style:italic}
 
-/* ── Nota pie ── */
-.note { font-size: 11px; color: var(--text3); margin-top: 10px; font-style: italic; }
+/* Loading */
+.loading-overlay{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:200;transition:opacity .3s}
+.loading-overlay.hidden{opacity:0;pointer-events:none}
+.spinner{width:28px;height:28px;border-radius:50%;border:2px solid var(--border2);border-top-color:var(--orange);animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:13px;color:var(--text2);font-family:var(--head)}
 
-/* ── Materiales desglose ── */
-.mat-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
-.mat-row:last-child { border-bottom: none; }
-.mat-ot { color: var(--text2); max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.mat-val { font-family: var(--mono); font-weight: 500; }
+/* Error */
+.error-bar{background:var(--red-l);border:1px solid #f3c4be;border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--red);margin-bottom:16px;display:none}
+.error-bar.show{display:block}
 </style>
 </head>
 <body>
@@ -251,14 +156,10 @@ tr:hover td { background: var(--bg); }
   <div class="loading-text">Cargando datos de producción…</div>
 </div>
 
-<!-- Header -->
 <div class="header">
   <div class="header-brand">
     <div class="brand-mark">B</div>
-    <div>
-      <div class="brand-name">B&B Planta</div>
-      <div class="brand-sub">Dashboard Producción</div>
-    </div>
+    <div><div class="brand-name">B&B Planta</div><div class="brand-sub">Dashboard Producción</div></div>
   </div>
   <div class="header-nav">
     <a class="nav-link active" href="produccion.html">Producción</a>
@@ -270,7 +171,6 @@ tr:hover td { background: var(--bg); }
   </div>
 </div>
 
-<!-- Filtros -->
 <div class="filter-bar">
   <span class="filter-label">Filtros</span>
   <select class="filter-sel" id="f-periodo" onchange="aplicarFiltros()">
@@ -283,53 +183,52 @@ tr:hover td { background: var(--bg); }
   </select>
 </div>
 
-<!-- Shell -->
 <div class="shell">
   <div class="error-bar" id="error-bar"></div>
 
   <!-- KPIs -->
   <div class="sec-title">Resumen de producción</div>
   <div class="kpi-row">
-    <div class="kpi"><div class="kpi-label">OTs activas</div><div class="kpi-value orange" id="k-ots">—</div><div class="kpi-sub" id="k-ots-sub">—</div></div>
+    <div class="kpi"><div class="kpi-label">OTs filtradas</div><div class="kpi-value orange" id="k-ots">—</div><div class="kpi-sub" id="k-ots-sub">—</div></div>
     <div class="kpi"><div class="kpi-label">Hs. presupuestadas</div><div class="kpi-value" id="k-pres">—</div><div class="kpi-sub">Áreas producción</div></div>
     <div class="kpi"><div class="kpi-label">Hs. planificadas</div><div class="kpi-value" id="k-plan">—</div><div class="kpi-sub" id="k-plan-sub">—</div></div>
     <div class="kpi"><div class="kpi-label">Hs. reales</div><div class="kpi-value green" id="k-real">—</div><div class="kpi-sub" id="k-real-sub">—</div></div>
-    <div class="kpi"><div class="kpi-label">OTs con desvío</div><div class="kpi-value red" id="k-desvio">—</div><div class="kpi-sub">Excedencia &gt;10%</div></div>
+    <div class="kpi"><div class="kpi-label">OTs con excedencia</div><div class="kpi-value red" id="k-desvio">—</div><div class="kpi-sub">&gt;110% en algún área</div></div>
     <div class="kpi"><div class="kpi-label">Mat. cotizados</div><div class="kpi-value" id="k-mat">—</div><div class="kpi-sub">Sin IVA</div></div>
   </div>
 
-  <!-- Gráficos de horas por área -->
-  <div class="sec-title">Horas por área</div>
+  <!-- Horas por área -->
+  <div class="sec-title">Horas por área — producción</div>
   <div class="grid3">
     <div class="box">
       <div class="box-header">
-        <div><div class="box-title">Presupuestadas</div><div class="box-sub">Según cotización aprobada</div></div>
+        <div><div class="box-title">Presupuestadas</div><div class="box-sub">Según OTs filtradas</div></div>
         <div class="box-total" id="tot-pres">—</div>
       </div>
-      <div class="chart-wrap h200"><canvas id="ch-pres"></canvas></div>
+      <div class="chart-wrap h220"><canvas id="ch-pres"></canvas></div>
     </div>
     <div class="box">
       <div class="box-header">
         <div><div class="box-title">Planificadas</div><div class="box-sub">Cargadas en planificación</div></div>
         <div class="box-total" id="tot-plan">—</div>
       </div>
-      <div class="chart-wrap h200"><canvas id="ch-plan"></canvas></div>
+      <div class="chart-wrap h220"><canvas id="ch-plan"></canvas></div>
     </div>
     <div class="box">
       <div class="box-header">
-        <div><div class="box-title">Reales ejecutadas</div><div class="box-sub">Registradas en histórico</div></div>
+        <div><div class="box-title">Reales ejecutadas</div><div class="box-sub">Historial de OTs filtradas</div></div>
         <div class="box-total" id="tot-real">—</div>
       </div>
-      <div class="chart-wrap h200"><canvas id="ch-real"></canvas></div>
+      <div class="chart-wrap h220"><canvas id="ch-real"></canvas></div>
     </div>
   </div>
 
-  <!-- Avance y desvíos por OT -->
+  <!-- Avance y desvíos -->
   <div class="sec-title">Avance y desvíos por proyecto</div>
   <div class="box full">
     <div class="box-header">
       <div>
-        <div class="box-title">Grado de avance vs. presupuesto — áreas de producción</div>
+        <div class="box-title">Grado de avance vs. presupuesto por área</div>
         <div class="box-sub">Verde &lt;90% · Amarillo 90–110% · Rojo &gt;110% del presupuesto consumido</div>
       </div>
     </div>
@@ -339,7 +238,7 @@ tr:hover td { background: var(--bg); }
           <tr>
             <th>Proyecto</th>
             <th>Cliente</th>
-            <th class="td-c">Avance total</th>
+            <th>Avance total</th>
             <th class="td-c">Carpintería</th>
             <th class="td-c">Herrería</th>
             <th class="td-c">Pintura</th>
@@ -351,29 +250,23 @@ tr:hover td { background: var(--bg); }
         <tbody id="tbl-avance"></tbody>
       </table>
     </div>
-    <p class="note">* Avance = horas reales acumuladas / horas presupuestadas. Rojo indica excedencia (&gt;110%).</p>
+    <p class="note">* Reales / Presupuestadas × 100. Solo áreas con horas presupuestadas se colorean.</p>
   </div>
 
-  <!-- Detalle desvíos -->
-  <div class="box full" id="box-desvios" style="display:none">
+  <!-- Desvíos detalle -->
+  <div class="box full" id="box-desvios" style="display:none;margin-top:12px">
     <div class="box-header">
       <div>
-        <div class="box-title">🔴 Análisis de desvíos — proyectos con excedencia</div>
-        <div class="box-sub">OTs que superaron el 110% de las horas presupuestadas en al menos un área</div>
+        <div class="box-title">🔴 Análisis de excedencias</div>
+        <div class="box-sub">Proyectos con más del 110% de horas presupuestadas en al menos un área</div>
       </div>
     </div>
     <div id="desvios-content"></div>
   </div>
 
-  <!-- Cumplimiento de fechas -->
-  <div class="sec-title">Cumplimiento de fechas de entrega</div>
+  <!-- Cumplimiento fechas -->
+  <div class="sec-title">Estado de entrega por proyecto</div>
   <div class="box full">
-    <div class="box-header">
-      <div>
-        <div class="box-title">Estado de entrega por proyecto</div>
-        <div class="box-sub">Basado en fecha tentativa de entrega y estado actual del proyecto</div>
-      </div>
-    </div>
     <div class="tbl-wrap">
       <table>
         <thead>
@@ -383,12 +276,12 @@ tr:hover td { background: var(--bg); }
             <th class="td-c">Fecha tentativa</th>
             <th class="td-c">Días restantes</th>
             <th class="td-c">Estado proyecto</th>
-            <th class="td-c">Entrega</th>
           </tr>
         </thead>
         <tbody id="tbl-cumpl"></tbody>
       </table>
     </div>
+    <p class="note">* Sin fecha de entrega real confirmada, los días restantes se calculan desde la fecha tentativa.</p>
   </div>
 
   <!-- Materiales -->
@@ -396,20 +289,20 @@ tr:hover td { background: var(--bg); }
   <div class="grid2">
     <div class="box">
       <div class="box-header">
-        <div><div class="box-title">Total materiales por OT</div><div class="box-sub">Costo cotizado sin IVA</div></div>
+        <div><div class="box-title">Composición por tipo</div><div class="box-sub">% sobre total cotizado</div></div>
         <div class="box-total" id="tot-mat">—</div>
       </div>
-      <div class="chart-wrap h240"><canvas id="ch-mat"></canvas></div>
+      <div class="chart-wrap h260"><canvas id="ch-mat-torta"></canvas></div>
     </div>
     <div class="box">
       <div class="box-header">
-        <div><div class="box-title">Desglose por proyecto</div><div class="box-sub">Detalle individual</div></div>
+        <div><div class="box-title">Desglose por proyecto</div><div class="box-sub">Costo total materiales sin IVA</div></div>
       </div>
-      <div id="mat-list" style="max-height:260px;overflow-y:auto"></div>
+      <div id="mat-list" style="max-height:280px;overflow-y:auto"></div>
     </div>
   </div>
 
-</div><!-- /shell -->
+</div>
 
 <script>
 /* ── CONFIG ── */
@@ -417,357 +310,330 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbxDtw2Mb613_s5E3maDB66o
 
 const AREAS = ['Carpintería','Herreria','Pintura','Grafica','Electricidad'];
 const AREA_COLS_OT = {
-  'Carpintería': 'Horas de Carpinteria',
-  'Herreria':    'Horas de Herreria',
-  'Pintura':     'Horas de Pintura',
-  'Grafica':     'Horas de Grafica',
+  'Carpintería':'Horas de Carpinteria',
+  'Herreria':   'Horas de Herreria',
+  'Pintura':    'Horas de Pintura',
+  'Grafica':    'Horas de Grafica',
   'Electricidad':'Horas de Electricidad'
 };
 const AREA_COLORS = {
-  'Carpintería': '#d4450c',
-  'Herreria':    '#1d4ed8',
-  'Pintura':     '#1a6b3c',
-  'Grafica':     '#7c3aed',
-  'Electricidad':'#9a6200'
+  'Carpintería':'#d4450c','Herreria':'#1d4ed8',
+  'Pintura':'#1a6b3c','Grafica':'#7c3aed','Electricidad':'#9a6200'
 };
 const PLAN_COLS = {
-  'Carpintería': 'Horas de Carpinteria',
-  'Herreria':    'Horas de Herreria',
-  'Pintura':     'Horas de Pintura',
-  'Grafica':     'Horas de Grafica',
-  'Electricidad':'Horas de Electricidad'
+  'Carpintería':'Horas de Carpinteria','Herreria':'Horas de Herreria',
+  'Pintura':'Horas de Pintura','Grafica':'Horas de Grafica','Electricidad':'Horas de Electricidad'
 };
+const MAT_LABELS_SHORT = {
+  'Costo Materiales Carpinteria Madera':      'Madera',
+  'Costo Materiales Carpinteria Metálica':    'Met. Carp.',
+  'Costo Materiales Plasticos':               'Plásticos',
+  'Costo Materiales Vidrios':                 'Vidrios',
+  'Costo Materiales Instalación Eléctrica':   'Eléctrica',
+  'Costo Materiales Pintura/laqueados':       'Pintura',
+  'Costo Materiales Herrajes':                'Herrajes',
+  'Costo Materiales Graficas':                'Gráficas',
+  'Costo Materiales Insumos':                 'Insumos',
+  'Costo Materiales Transportes/Fletes':      'Fletes',
+  'Costo Materiales Embalaje':                'Embalaje',
+  'Costo Materiales Montaje':                 'Montaje',
+  'Costo Materiales Imprevistos':             'Imprevistos'
+};
+const MAT_COLS = Object.keys(MAT_LABELS_SHORT);
+const MAT_PIE_COLORS = [
+  '#d4450c','#1d4ed8','#1a6b3c','#7c3aed','#9a6200',
+  '#0891b2','#b45309','#be185d','#4d7c0f','#7e22ce',
+  '#0f766e','#b91c1c','#1e40af'
+];
 
-/* ── State ── */
 let RAW = null;
 let charts = {};
 
 /* ── Helpers ── */
-const fmtH   = v => (+v||0).toFixed(1) + ' hs';
-const fmtM   = v => '$' + ((+v||0)/1000000).toFixed(2) + 'M';
-const fmtPct = v => (+v||0).toFixed(1) + '%';
-const esc    = s => String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-const shortOT = s => {
-  const parts = String(s||'').split('_');
-  return parts.slice(1).join(' · ').substring(0,40);
-};
-const clienteOT = s => {
-  const parts = String(s||'').split('_');
-  return parts[1] || s;
-};
+const fmtH  = v => (+v||0).toFixed(1) + ' hs';
+const fmtM  = v => '$' + ((+v||0)/1000000).toFixed(2) + 'M';
+const fmtPct= v => (+v||0).toFixed(1) + '%';
+const esc   = s => String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const shortOT = s => String(s||'').split('_').slice(1).join(' · ').substring(0,42) || s;
+const clienteOT = s => String(s||'').split('_')[1] || s;
 
-function newChart(id, cfg) {
-  if (charts[id]) charts[id].destroy();
-  const el = document.getElementById(id);
-  if (el) charts[id] = new Chart(el, cfg);
+function newChart(id,cfg){
+  if(charts[id]) charts[id].destroy();
+  const el=document.getElementById(id);
+  if(el) charts[id]=new Chart(el,cfg);
 }
 
-function desvioClass(pct) {
-  if (pct === null || pct === undefined || isNaN(pct)) return '';
-  if (pct > 110) return 'd-red';
-  if (pct >= 90)  return 'd-amber';
-  return 'd-green';
-}
-function badgeDesvio(pct) {
-  if (pct === null || isNaN(pct)) return '<span class="badge badge-gray">Sin datos</span>';
-  if (pct > 110) return `<span class="badge badge-red">▲ ${fmtPct(pct)}</span>`;
-  if (pct >= 90)  return `<span class="badge badge-amber">≈ ${fmtPct(pct)}</span>`;
-  return `<span class="badge badge-green">✓ ${fmtPct(pct)}</span>`;
+function desvioCell(pres, real) {
+  if (!pres) return '<td class="td-c"><span class="badge badge-gray" style="font-size:9px">—</span></td>';
+  const pct = real/pres*100;
+  const cls = pct>110?'dr':pct>=90?'da':'dg';
+  return `<td class="td-c"><div class="dcell ${cls}">
+    <div class="dcell-top">${real.toFixed(1)}/${pres.toFixed(0)}</div>
+    <div class="dcell-val">${pct.toFixed(1)}%</div>
+  </div></td>`;
 }
 
-/* ── Load ── */
-async function cargarDatos() {
+function badgeTotal(pct) {
+  if (pct===null) return '<span class="badge badge-gray">Sin datos</span>';
+  if (pct>110) return `<span class="badge badge-red">▲ ${pct.toFixed(1)}%</span>`;
+  if (pct>=90)  return `<span class="badge badge-amber">≈ ${pct.toFixed(1)}%</span>`;
+  return `<span class="badge badge-green">✓ ${pct.toFixed(1)}%</span>`;
+}
+
+/* ── Carga ── */
+async function cargarDatos(){
   document.getElementById('loading').classList.remove('hidden');
-  try {
-    const r = await fetch(API_URL);
-    RAW = await r.json();
-    if (RAW.error) throw new Error(RAW.error);
+  try{
+    const r=await fetch(API_URL);
+    RAW=await r.json();
+    if(RAW.error) throw new Error(RAW.error);
 
-    // Poblar filtro períodos
-    const fp = document.getElementById('f-periodo');
-    const cur = fp.value;
-    fp.innerHTML = '<option value="">Todos los períodos</option>';
-    (RAW.periodos || []).forEach(p => {
-      const o = document.createElement('option');
-      o.value = o.textContent = p;
-      if (p === cur) o.selected = true;
+    // Poblar períodos desde OTs (col AP Año Mes)
+    const fp=document.getElementById('f-periodo');
+    const cur=fp.value;
+    fp.innerHTML='<option value="">Todos los períodos</option>';
+    (RAW.periodos||[]).forEach(p=>{
+      const o=document.createElement('option');
+      o.value=o.textContent=p;
+      if(p===cur) o.selected=true;
       fp.appendChild(o);
     });
 
-    document.getElementById('last-upd').textContent =
-      'Act. ' + new Date().toLocaleTimeString('es-AR', {hour:'2-digit',minute:'2-digit'});
+    document.getElementById('last-upd').textContent=
+      'Act. '+new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
     aplicarFiltros();
-  } catch(e) {
-    mostrarError('No se pudieron cargar los datos: ' + e.message);
+  }catch(e){
+    mostrarError('No se pudieron cargar los datos: '+e.message);
     document.getElementById('loading').classList.add('hidden');
   }
 }
 
-function aplicarFiltros() {
-  if (!RAW) return;
+function aplicarFiltros(){
+  if(!RAW) return;
   const periodo = document.getElementById('f-periodo').value;
   const estado  = document.getElementById('f-estado').value;
 
-  // Filtrar OTs
-  let ots = RAW.ots || [];
-  if (estado) ots = ots.filter(o => o['Estado de proyecto aprobado'] === estado);
+  // 1. Filtrar OTs por estado Y por período (col AP "Año Mes")
+  let ots = (RAW.ots||[]);
+  if(estado)  ots = ots.filter(o=> o['Estado de proyecto aprobado']===estado);
+  if(periodo) ots = ots.filter(o=> String(o['Año Mes']||'').trim()===periodo);
 
-  // Filtrar histórico por período
-  let hist = RAW.historico || [];
-  if (periodo) hist = hist.filter(h => h['Año Mes'] === periodo);
+  // Set de nombres de proyectos filtrados — para cruzar histórico y planificación
+  const nombresOTs = new Set(ots.map(o=> String(o['Nombre proyecto']||'').trim()));
 
-  // Filtrar planificación
-  let plan = RAW.planificacion || [];
+  // 2. Filtrar planificación: por nombre de proyecto que esté en las OTs filtradas
+  //    y por período si la planif tiene col "Año Mes"
+  let plan = (RAW.planificacion||[]).filter(p=>
+    nombresOTs.has(String(p['Nombre proyecto']||'').trim())
+  );
+  if(periodo) plan = plan.filter(p=> String(p['Año Mes']||'').trim()===periodo);
 
-  renderizar(ots, hist, plan, periodo);
+  // 3. Filtrar histórico: solo registros cuyo "Orden de trabajo" coincida
+  //    con algún "Nombre proyecto" de las OTs filtradas
+  let hist = (RAW.historico||[]).filter(h=>
+    nombresOTs.has(String(h['Orden de trabajo']||'').trim())
+  );
+  // Adicionalmente filtrar por período del histórico si se seleccionó uno
+  if(periodo) hist = hist.filter(h=> String(h['Año Mes']||'').trim()===periodo);
+
+  renderizar(ots, hist, plan);
   document.getElementById('loading').classList.add('hidden');
 }
 
 /* ── RENDER ── */
-function renderizar(ots, hist, plan, periodo) {
+function renderizar(ots, hist, plan){
 
-  /* ── KPIs ── */
-  const totPres = ots.reduce((a,o) =>
-    a + AREAS.reduce((b,ar) => b + (+o[AREA_COLS_OT[ar]]||0), 0), 0);
-  const totPlan = plan.reduce((a,p) =>
-    a + AREAS.reduce((b,ar) => b + (+p[PLAN_COLS[ar]]||0), 0), 0);
-  const totReal = hist
-    .filter(h => AREAS.includes(h['Tarea OK']))
-    .reduce((a,h) => a + (+h['Tiempo (hs)']||0), 0);
-  const totMat  = ots.reduce((a,o) => a + (+o['Costo Total Materiales (Sin IVA)']||0), 0);
+  /* KPIs */
+  const totPres = ots.reduce((a,o)=>a+AREAS.reduce((b,ar)=>b+(+o[AREA_COLS_OT[ar]]||0),0),0);
+  const totPlan = plan.reduce((a,p)=>a+AREAS.reduce((b,ar)=>b+(+p[PLAN_COLS[ar]]||0),0),0);
+  const totReal = hist.filter(h=>AREAS.includes(h['Tarea OK'])).reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
+  const totMat  = ots.reduce((a,o)=>a+(+o['Costo Total Materiales (Sin IVA)']||0),0);
 
-  // OTs con desvío (algún área >110%)
-  const otsDesvio = ots.filter(o => {
-    const otNum = (o['Nombre proyecto']||'').match(/OT\d+/)?.[0];
-    return AREAS.some(ar => {
-      const pres = +o[AREA_COLS_OT[ar]]||0;
-      if (!pres) return false;
-      const real = hist.filter(h => h['OT_num']===otNum && h['Tarea OK']===ar)
-                       .reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
-      return (real/pres*100) > 110;
+  const otsEnDesvio = ots.filter(o=>{
+    const nom = String(o['Nombre proyecto']||'').trim();
+    return AREAS.some(ar=>{
+      const pres=+o[AREA_COLS_OT[ar]]||0;
+      if(!pres) return false;
+      const real=hist.filter(h=>String(h['Orden de trabajo']||'').trim()===nom&&h['Tarea OK']===ar)
+                     .reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
+      return real/pres*100>110;
     });
   });
 
-  document.getElementById('k-ots').textContent      = ots.length;
-  document.getElementById('k-ots-sub').textContent  = ots.filter(o=>o['Estado de proyecto aprobado']==='En curso').length + ' en curso';
-  document.getElementById('k-pres').textContent     = fmtH(totPres);
-  document.getElementById('k-plan').textContent     = fmtH(totPlan);
-  document.getElementById('k-plan-sub').textContent = totPres > 0 ? fmtPct(totPlan/totPres*100) + ' del presupuesto' : '—';
-  document.getElementById('k-real').textContent     = fmtH(totReal);
-  document.getElementById('k-real-sub').textContent = totPres > 0 ? fmtPct(totReal/totPres*100) + ' ejecutado' : '—';
-  document.getElementById('k-desvio').textContent   = otsDesvio.length;
-  document.getElementById('k-mat').textContent      = fmtM(totMat);
+  document.getElementById('k-ots').textContent     = ots.length;
+  document.getElementById('k-ots-sub').textContent = ots.filter(o=>o['Estado de proyecto aprobado']==='En curso').length+' en curso';
+  document.getElementById('k-pres').textContent    = fmtH(totPres);
+  document.getElementById('k-plan').textContent    = fmtH(totPlan);
+  document.getElementById('k-plan-sub').textContent= totPres>0?fmtPct(totPlan/totPres*100)+' del presup.':'—';
+  document.getElementById('k-real').textContent    = fmtH(totReal);
+  document.getElementById('k-real-sub').textContent= totPres>0?fmtPct(totReal/totPres*100)+' ejecutado':'—';
+  document.getElementById('k-desvio').textContent  = otsEnDesvio.length;
+  document.getElementById('k-mat').textContent     = fmtM(totMat);
 
-  /* ── Horas por área — 3 gráficos ── */
-  const areasPres = AREAS.map(ar => ots.reduce((a,o)=>a+(+o[AREA_COLS_OT[ar]]||0),0));
-  const areasPlan = AREAS.map(ar => plan.reduce((a,p)=>a+(+p[PLAN_COLS[ar]]||0),0));
-  const areasReal = AREAS.map(ar =>
-    hist.filter(h=>h['Tarea OK']===ar).reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0));
+  /* Horas por área — 3 charts */
+  const areasPres = AREAS.map(ar=>ots.reduce((a,o)=>a+(+o[AREA_COLS_OT[ar]]||0),0));
+  const areasPlan = AREAS.map(ar=>plan.reduce((a,p)=>a+(+p[PLAN_COLS[ar]]||0),0));
+  const areasReal = AREAS.map(ar=>hist.filter(h=>h['Tarea OK']===ar).reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0));
 
-  const areaBarCfg = (data, label) => ({
-    type: 'bar',
-    data: {
-      labels: AREAS,
-      datasets: [{ data, backgroundColor: AREAS.map(a=>AREA_COLORS[a]), borderRadius: 4 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
-      plugins: { legend: { display: false }, tooltip: {
-        callbacks: { label: ctx => ' ' + ctx.raw.toFixed(1) + ' hs' }
-      }},
-      scales: {
-        x: { grid:{ color:'rgba(0,0,0,.05)' }, ticks:{ font:{size:10}, color:'#a09b95', callback:v=>v+'h' } },
-        y: { grid:{ display:false }, ticks:{ font:{size:11}, color:'#6b6660' } }
+  const barCfg = data=>({
+    type:'bar',
+    data:{labels:AREAS,datasets:[{data,backgroundColor:AREAS.map(a=>AREA_COLORS[a]),borderRadius:4}]},
+    options:{
+      responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw.toFixed(1)+' hs'}}},
+      scales:{
+        x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:10},color:'#a09b95',callback:v=>v+'h'}},
+        y:{grid:{display:false},ticks:{font:{size:11},color:'#6b6660'}}
       }
     }
   });
+  newChart('ch-pres',barCfg(areasPres));
+  newChart('ch-plan',barCfg(areasPlan));
+  newChart('ch-real',barCfg(areasReal));
+  document.getElementById('tot-pres').textContent=areasPres.reduce((a,b)=>a+b,0).toFixed(1)+' hs';
+  document.getElementById('tot-plan').textContent=areasPlan.reduce((a,b)=>a+b,0).toFixed(1)+' hs';
+  document.getElementById('tot-real').textContent=areasReal.reduce((a,b)=>a+b,0).toFixed(1)+' hs';
 
-  newChart('ch-pres', areaBarCfg(areasPres, 'Presupuestadas'));
-  newChart('ch-plan', areaBarCfg(areasPlan, 'Planificadas'));
-  newChart('ch-real', areaBarCfg(areasReal, 'Reales'));
+  /* Tabla avance */
+  const tbody=document.getElementById('tbl-avance');
+  const desvDiv=document.getElementById('desvios-content');
+  tbody.innerHTML=''; desvDiv.innerHTML='';
+  let hayDesv=false;
 
-  const sumPres = areasPres.reduce((a,b)=>a+b,0);
-  const sumPlan = areasPlan.reduce((a,b)=>a+b,0);
-  const sumReal = areasReal.reduce((a,b)=>a+b,0);
-  document.getElementById('tot-pres').textContent = sumPres.toFixed(1) + ' hs';
-  document.getElementById('tot-plan').textContent = sumPlan.toFixed(1) + ' hs';
-  document.getElementById('tot-real').textContent = sumReal.toFixed(1) + ' hs';
-
-  /* ── Avance por OT ── */
-  const tbody = document.getElementById('tbl-avance');
-  const desviosContent = document.getElementById('desvios-content');
-  tbody.innerHTML = '';
-  desviosContent.innerHTML = '';
-  let hayDesvios = false;
-
-  ots.forEach(o => {
-    const nombre = o['Nombre proyecto'] || '';
-    const otNum  = nombre.match(/OT\d+/)?.[0];
-    const cliente = clienteOT(nombre);
-
-    // Total
-    let totPresOT = 0, totRealOT = 0;
-    const areaData = {};
-
-    AREAS.forEach(ar => {
-      const pres = +o[AREA_COLS_OT[ar]]||0;
-      const real = hist.filter(h => h['OT_num']===otNum && h['Tarea OK']===ar)
-                       .reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
-      totPresOT += pres;
-      totRealOT += real;
-      areaData[ar] = { pres, real, pct: pres>0 ? real/pres*100 : null };
+  ots.forEach(o=>{
+    const nom=String(o['Nombre proyecto']||'').trim();
+    const histOT=hist.filter(h=>String(h['Orden de trabajo']||'').trim()===nom);
+    let totP=0,totR=0;
+    const ad={};
+    AREAS.forEach(ar=>{
+      const p=+o[AREA_COLS_OT[ar]]||0;
+      const r=histOT.filter(h=>h['Tarea OK']===ar).reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
+      totP+=p; totR+=r; ad[ar]={p,r};
     });
+    const pctTot=totP>0?totR/totP*100:null;
+    const barW=Math.min(pctTot||0,100).toFixed(1);
+    const barC=!pctTot?'#d4cfc8':pctTot>110?'#b91c1c':pctTot>=90?'#9a6200':'#1a6b3c';
+    const areaCells=AREAS.map(ar=>desvioCell(ad[ar].p,ad[ar].r)).join('');
 
-    const pctTotal = totPresOT > 0 ? totRealOT/totPresOT*100 : null;
-
-    // Barra de avance
-    const barW  = Math.min(pctTotal||0, 100).toFixed(1);
-    const barClr = !pctTotal ? '#d4cfc8' : pctTotal>110 ? '#b91c1c' : pctTotal>=90 ? '#9a6200' : '#1a6b3c';
-
-    // Celdas por área
-    const areaCells = AREAS.map(ar => {
-      const d = areaData[ar];
-      if (!d.pres) return '<td class="td-c"><span class="badge badge-gray" style="font-size:9px">—</span></td>';
-      const cls = desvioClass(d.pct);
-      return `<td class="td-c">
-        <div class="desvio-cell ${cls}" style="display:inline-block;min-width:70px;padding:4px 8px">
-          <div class="desvio-area">${d.real.toFixed(1)}/${d.pres.toFixed(1)}</div>
-          <div class="desvio-val">${d.pct!==null?fmtPct(d.pct):'—'}</div>
-        </div>
-      </td>`;
-    }).join('');
-
-    tbody.innerHTML += `<tr>
-      <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(nombre)}">${esc(shortOT(nombre))}</td>
-      <td>${esc(cliente)}</td>
-      <td class="td-c">
-        <div class="prog-wrap">
-          <div class="prog-track"><div class="prog-fill" style="width:${barW}%;background:${barClr}"></div></div>
-          <span class="prog-pct">${pctTotal!==null?fmtPct(pctTotal):'—'}</span>
-        </div>
-      </td>
+    tbody.innerHTML+=`<tr>
+      <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(nom)}">${esc(shortOT(nom))}</td>
+      <td>${esc(clienteOT(nom))}</td>
+      <td><div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:${barW}%;background:${barC}"></div></div><span class="prog-pct">${pctTot!==null?fmtPct(pctTot):'—'}</span></div></td>
       ${areaCells}
-      <td class="td-c">${badgeDesvio(pctTotal)}</td>
+      <td class="td-c">${badgeTotal(pctTot)}</td>
     </tr>`;
 
-    // ¿Tiene desvío en algún área?
-    const areasEnDesvio = AREAS.filter(ar => areaData[ar].pct !== null && areaData[ar].pct > 110);
-    if (areasEnDesvio.length > 0) {
-      hayDesvios = true;
-      const cellsDesvio = areasEnDesvio.map(ar => {
-        const d = areaData[ar];
-        const exceso = d.real - d.pres;
-        return `<div class="desvio-cell d-red" style="flex:1;min-width:120px">
-          <div class="desvio-area">${esc(ar)}</div>
-          <div class="desvio-val">${fmtPct(d.pct)}</div>
-          <div style="font-size:10px;color:var(--red);margin-top:2px">+${exceso.toFixed(1)} hs exceso</div>
+    // Desvíos
+    const areasDesv=AREAS.filter(ar=>ad[ar].p>0&&ad[ar].r/ad[ar].p*100>110);
+    if(areasDesv.length){
+      hayDesv=true;
+      const cards=areasDesv.map(ar=>{
+        const exc=(ad[ar].r-ad[ar].p).toFixed(1);
+        const pct=(ad[ar].r/ad[ar].p*100).toFixed(1);
+        return `<div class="desvio-card">
+          <div class="desvio-card-area">${esc(ar)}</div>
+          <div class="desvio-card-val">${pct}%</div>
+          <div class="desvio-card-sub">+${exc} hs exceso</div>
         </div>`;
       }).join('');
-      desviosContent.innerHTML += `
-        <div style="margin-bottom:16px">
-          <div style="font-size:12px;font-weight:600;margin-bottom:8px;color:var(--text)">${esc(shortOT(nombre))}</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">${cellsDesvio}</div>
-        </div>`;
+      desvDiv.innerHTML+=`<div class="desvio-blk">
+        <div class="desvio-blk-title">${esc(shortOT(nom))}</div>
+        <div class="desvio-cards">${cards}</div>
+      </div>`;
     }
   });
+  document.getElementById('box-desvios').style.display=hayDesv?'':'none';
 
-  document.getElementById('box-desvios').style.display = hayDesvios ? '' : 'none';
+  /* Cumplimiento fechas */
+  const tcumpl=document.getElementById('tbl-cumpl');
+  tcumpl.innerHTML='';
+  const hoy=new Date(); hoy.setHours(0,0,0,0);
 
-  /* ── Cumplimiento de fechas ── */
-  const tcumpl = document.getElementById('tbl-cumpl');
-  tcumpl.innerHTML = '';
-  const hoy = new Date();
-  hoy.setHours(0,0,0,0);
+  ots.forEach(o=>{
+    const nom=String(o['Nombre proyecto']||'').trim();
+    const estado=o['Estado de proyecto aprobado']||'';
+    const fechaRaw=o['Fecha de entrega tentativa']||o['Fecha de entrega tentiva']||'';
+    let fechaFmt='—', diasBadge='<span class="badge badge-gray">Sin fecha</span>';
 
-  ots.forEach(o => {
-    const nombre  = o['Nombre proyecto'] || '';
-    const cliente = clienteOT(nombre);
-    const estado  = o['Estado de proyecto aprobado'] || '';
-
-    // Buscar fecha tentativa — puede estar en varias columnas
-    let fechaTent = o['Fecha de entrega'] || o['Fecha tentativa'] || o['Fecha Entrega'] || '';
-    let diasRest = '—', diasBadge = '<span class="badge badge-gray">Sin fecha</span>';
-    let entregaBadge = '';
-
-    if (fechaTent && fechaTent !== '') {
-      const fd = new Date(fechaTent);
-      if (!isNaN(fd)) {
+    if(fechaRaw){
+      const fd=new Date(fechaRaw);
+      if(!isNaN(fd)){
         fd.setHours(0,0,0,0);
-        const diff = Math.round((fd - hoy) / 86400000);
-        diasRest = diff === 0 ? 'Hoy' : diff > 0 ? `${diff}d` : `${Math.abs(diff)}d atrás`;
-        diasBadge = diff < 0
+        const diff=Math.round((fd-hoy)/86400000);
+        fechaFmt=fd.toLocaleDateString('es-AR',{day:'numeric',month:'short',year:'numeric'});
+        diasBadge = diff<0
           ? `<span class="badge badge-red">Vencida ${Math.abs(diff)}d</span>`
-          : diff <= 3
-          ? `<span class="badge badge-amber">${diasRest}</span>`
-          : `<span class="badge badge-green">${diasRest}</span>`;
+          : diff===0
+          ? `<span class="badge badge-amber">Hoy</span>`
+          : diff<=5
+          ? `<span class="badge badge-amber">${diff}d</span>`
+          : `<span class="badge badge-green">${diff}d</span>`;
       }
     }
 
-    if (estado === 'Entregado' || estado === 'Finalizado') {
-      entregaBadge = '<span class="badge badge-green">✓ Entregado</span>';
-    } else if (estado === 'En curso') {
-      entregaBadge = '<span class="badge badge-blue">En curso</span>';
-    } else {
-      entregaBadge = `<span class="badge badge-gray">${esc(estado)||'—'}</span>`;
-    }
+    let estadoBadge;
+    if(estado==='En curso')     estadoBadge='<span class="badge badge-blue">En curso</span>';
+    else if(estado==='Entregado'||estado==='Finalizado') estadoBadge='<span class="badge badge-green">✓ Entregado</span>';
+    else estadoBadge=`<span class="badge badge-gray">${esc(estado)||'—'}</span>`;
 
-    const fechaFmt = fechaTent
-      ? (() => { try { return new Date(fechaTent).toLocaleDateString('es-AR',{day:'numeric',month:'short',year:'numeric'}); } catch(e){ return fechaTent; } })()
-      : '—';
-
-    tcumpl.innerHTML += `<tr>
-      <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(nombre)}">${esc(shortOT(nombre))}</td>
-      <td>${esc(cliente)}</td>
+    tcumpl.innerHTML+=`<tr>
+      <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(nom)}">${esc(shortOT(nom))}</td>
+      <td>${esc(clienteOT(nom))}</td>
       <td class="td-c" style="font-family:var(--mono);font-size:11px">${fechaFmt}</td>
       <td class="td-c">${diasBadge}</td>
-      <td class="td-c">${entregaBadge}</td>
-      <td class="td-c">${estado==='Entregado'||estado==='Finalizado'?'<span class="badge badge-green">✓ A tiempo</span>':diasRest==='—'?'<span class="badge badge-gray">Sin info</span>':+diasRest.replace(/\D/g,'')<0?'<span class="badge badge-red">Demorada</span>':'<span class="badge badge-blue">Pendiente</span>'}</td>
+      <td class="td-c">${estadoBadge}</td>
     </tr>`;
   });
 
-  /* ── Materiales ── */
-  const matData = ots
-    .map(o => ({ nombre: shortOT(o['Nombre proyecto']), val: +o['Costo Total Materiales (Sin IVA)']||0 }))
-    .filter(d => d.val > 0)
-    .sort((a,b) => b.val - a.val);
+  /* Materiales — torta + lista */
+  // Sumar por tipo de material en todas las OTs filtradas
+  const matTotales={};
+  MAT_COLS.forEach(col=>{
+    const sum=ots.reduce((a,o)=>a+(+o[col]||0),0);
+    if(sum>0) matTotales[col]=sum;
+  });
+  const matEntries=Object.entries(matTotales).sort((a,b)=>b[1]-a[1]);
+  const totMatVal=matEntries.reduce((a,[,v])=>a+v,0);
+  document.getElementById('tot-mat').textContent=fmtM(totMatVal);
 
-  const totMatVal = matData.reduce((a,d)=>a+d.val,0);
-  document.getElementById('tot-mat').textContent = fmtM(totMatVal);
-
-  newChart('ch-mat', {
-    type: 'bar',
-    data: {
-      labels: matData.map(d => d.nombre),
-      datasets: [{ data: matData.map(d=>d.val), backgroundColor: '#d4450c', borderRadius: 4 }]
+  newChart('ch-mat-torta',{
+    type:'doughnut',
+    data:{
+      labels:matEntries.map(([k])=>MAT_LABELS_SHORT[k]||k),
+      datasets:[{
+        data:matEntries.map(([,v])=>v),
+        backgroundColor:MAT_PIE_COLORS.slice(0,matEntries.length),
+        borderWidth:1,borderColor:'#faf9f7'
+      }]
     },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend:{ display:false }, tooltip:{
-        callbacks:{ label: ctx => ' $' + (ctx.raw/1000000).toFixed(2) + 'M' }
-      }},
-      scales: {
-        x: { grid:{display:false}, ticks:{ font:{size:10}, color:'#a09b95', maxRotation:35, autoSkip:false } },
-        y: { grid:{ color:'rgba(0,0,0,.05)' }, ticks:{ font:{size:10}, color:'#a09b95', callback:v=>'$'+(v/1000000).toFixed(1)+'M' } }
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'right',labels:{font:{size:10},color:'#6b6660',boxWidth:10,padding:8}},
+        tooltip:{callbacks:{label:ctx=>{
+          const pct=(ctx.raw/totMatVal*100).toFixed(1);
+          return ` $${(ctx.raw/1000000).toFixed(2)}M (${pct}%)`;
+        }}}
       }
     }
   });
 
-  const matList = document.getElementById('mat-list');
-  matList.innerHTML = matData.map(d =>
-    `<div class="mat-row">
-      <span class="mat-ot">${esc(d.nombre)}</span>
-      <span class="mat-val">${fmtM(d.val)}</span>
-    </div>`
-  ).join('') || '<div style="color:var(--text3);font-size:12px;padding:8px 0">Sin datos de materiales</div>';
+  // Lista por OT
+  const matPorOT=ots
+    .map(o=>({nombre:shortOT(o['Nombre proyecto']),val:+o['Costo Total Materiales (Sin IVA)']||0}))
+    .filter(d=>d.val>0).sort((a,b)=>b.val-a.val);
+
+  document.getElementById('mat-list').innerHTML=matPorOT.map(d=>
+    `<div class="mat-row"><span class="mat-name">${esc(d.nombre)}</span><span class="mat-val">${fmtM(d.val)}</span></div>`
+  ).join('')||'<div style="color:var(--text3);font-size:12px;padding:8px 0">Sin datos de materiales</div>';
 }
 
-function mostrarError(msg) {
-  const b = document.getElementById('error-bar');
-  b.textContent = '⚠ ' + msg;
-  b.classList.add('show');
+function mostrarError(msg){
+  const b=document.getElementById('error-bar');
+  b.textContent='⚠ '+msg; b.classList.add('show');
 }
 
-window.addEventListener('DOMContentLoaded', cargarDatos);
+window.addEventListener('DOMContentLoaded',cargarDatos);
 </script>
 </body>
 </html>
