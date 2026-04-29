@@ -163,7 +163,6 @@ tr:hover td{background:var(--bg)}
   </div>
   <div class="header-nav">
     <a class="nav-link active" href="produccion.html">Producción</a>
-    <a class="nav-link" href="form.html">Carga de horas</a>
   </div>
   <div class="header-right">
     <span class="last-upd" id="last-upd">—</span>
@@ -178,7 +177,8 @@ tr:hover td{background:var(--bg)}
   </select>
   <div class="filter-sep"></div>
   <select class="filter-sel" id="f-estado" onchange="aplicarFiltros()">
-    <option value="En curso">Solo en curso</option>
+    <option value="En curso">En curso</option>
+    <option value="Entregado">Entregados</option>
     <option value="">Todos los proyectos</option>
   </select>
 </div>
@@ -373,7 +373,9 @@ function desvioCell(pres, real) {
   </div></td>`;
 }
 
-function badgeTotal(pct) {
+function badgeTotal(pct, estado) {
+  if (estado === 'Entregado' || estado === 'Finalizado')
+    return '<span class="badge badge-green">✓ Entregado</span>';
   if (pct===null) return '<span class="badge badge-gray">Sin datos</span>';
   if (pct>110) return `<span class="badge badge-red">▲ ${pct.toFixed(1)}%</span>`;
   if (pct>=90)  return `<span class="badge badge-amber">≈ ${pct.toFixed(1)}%</span>`;
@@ -514,13 +516,14 @@ function renderizar(ots, hist, plan){
     const barW=Math.min(pctTot||0,100).toFixed(1);
     const barC=!pctTot?'#d4cfc8':pctTot>110?'#b91c1c':pctTot>=90?'#9a6200':'#1a6b3c';
     const areaCells=AREAS.map(ar=>desvioCell(ad[ar].p,ad[ar].r)).join('');
+    const estadoOT=o['Estado de proyecto aprobado']||'';
 
     tbody.innerHTML+=`<tr>
       <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(nom)}">${esc(shortOT(nom))}</td>
       <td>${esc(clienteOT(nom))}</td>
       <td><div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:${barW}%;background:${barC}"></div></div><span class="prog-pct">${pctTot!==null?fmtPct(pctTot):'—'}</span></div></td>
       ${areaCells}
-      <td class="td-c">${badgeTotal(pctTot)}</td>
+      <td class="td-c">${badgeTotal(pctTot, estadoOT)}</td>
     </tr>`;
 
     // Desvíos
@@ -561,7 +564,10 @@ function renderizar(ots, hist, plan){
         fd.setHours(0,0,0,0);
         const diff=Math.round((fd-hoy)/86400000);
         fechaFmt=fd.toLocaleDateString('es-AR',{day:'numeric',month:'short',year:'numeric'});
-        diasBadge = diff<0
+        const entregada = estado==='Entregado'||estado==='Finalizado';
+        diasBadge = entregada
+          ? `<span class="badge badge-green">✓ Entregado</span>`
+          : diff<0
           ? `<span class="badge badge-red">Vencida ${Math.abs(diff)}d</span>`
           : diff===0
           ? `<span class="badge badge-amber">Hoy</span>`
