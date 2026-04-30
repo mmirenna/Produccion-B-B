@@ -467,33 +467,8 @@ const MAT_PIE_COLORS = [
 
 let RAW = null;
 let charts = {};
-let selectedPeriodos = new Set();
-let selectedEstados  = new Set(['En curso']);
 
 /* ── Sort state ── */
-const sortState = {
-  avance:  { col: 'anomes', dir: -1 },
-  cumpl:   { col: 'anomes', dir: -1 },
-};
-function sortTable(id, col) {
-  const st=sortState[id];
-  if(st.col===col) st.dir*=-1;
-  else { st.col=col; st.dir=col==='anomes'?-1:1; }
-  aplicarFiltros();
-}
-function thS(id,col,label,cls=''){
-  const st=sortState[id];
-  const arrow=st.col===col?(st.dir===1?' ↑':' ↓'):'';
-  return `<th class="${cls}" style="cursor:pointer;user-select:none" onclick="sortTable('${id}','${col}')">${label}${arrow}</th>`;
-}
-function sortRows(rows,col,dir,getVal){
-  return [...rows].sort((a,b)=>{
-    const va=getVal(a,col),vb=getVal(b,col);
-    if(typeof va==='string') return dir*va.localeCompare(vb);
-    return dir*((va||0)-(vb||0));
-  });
-}
-
 /* ── Multi-select logic ── */
 function toggleMs(key){
   const dd=document.getElementById(`ms-${key}-dropdown`);
