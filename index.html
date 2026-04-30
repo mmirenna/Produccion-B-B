@@ -11,22 +11,22 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f0ede8;--bg2:#e8e4de;--bg3:#dedad3;
-  --white:#faf9f7;--border:#d4cfc8;--border2:#c0b9b0;
-  --text:#1c1a17;--text2:#6b6660;--text3:#a09b95;--ink:#1c1a17;
-  --orange:#d4450c;--green:#1a6b3c;--green-l:#e6f4ec;
-  --amber:#9a6200;--amber-l:#fef5e0;
-  --red:#b91c1c;--red-l:#fde8e8;
-  --blue:#1d4ed8;--blue-l:#e8eeff;
+  --bg:#0d0f14;--bg2:#13161e;--bg3:#1a1e28;
+  --white:#161a24;--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+  --text:#e8eaf0;--text2:#7c8192;--text3:#4a4f60;--ink:#0d0f14;
+  --orange:#e05530;--green:#34c98a;--green-l:rgba(52,201,138,.15);
+  --amber:#f5a623;--amber-l:rgba(245,166,35,.15);
+  --red:#e05252;--red-l:rgba(224,82,82,.15);
+  --blue:#4f7cff;--blue-l:rgba(79,124,255,.15);
   --r:8px;--rl:12px;
-  --shadow:0 1px 4px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  --shadow:0 1px 8px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.3);
   --font:'DM Sans',sans-serif;--head:'Syne',sans-serif;--mono:'DM Mono',monospace;
 }
 html{font-size:14px}
 body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh}
 
 /* Header */
-.header{background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:56px;position:sticky;top:0;z-index:50}
+.header{background:#0a0c10;border-bottom:1px solid rgba(255,255,255,.06);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:56px;position:sticky;top:0;z-index:50}
 .header-brand{display:flex;align-items:center;gap:12px}
 .brand-name{font-family:var(--head);font-size:15px;font-weight:600}
 .brand-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
@@ -40,9 +40,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .last-upd{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3)}
 
 /* Filtros */
-.filter-bar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.filter-bar{background:#0f111a;border-bottom:1px solid rgba(255,255,255,.08);padding:10px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .filter-label{font-size:11px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.06em}
-select.filter-sel{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:5px 28px 5px 10px;font-family:var(--font);font-size:12px;color:var(--text);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b6660' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;transition:border-color .15s}
+select.filter-sel{background:#1a1e28;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:5px 28px 5px 10px;font-family:var(--font);font-size:12px;color:var(--text);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b6660' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;transition:border-color .15s}
 select.filter-sel:focus{border-color:var(--ink)}
 .filter-sep{width:1px;height:18px;background:var(--border)}
 
@@ -85,7 +85,7 @@ table{width:100%;border-collapse:collapse;font-size:12px}
 th{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border2);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);white-space:nowrap;font-family:var(--head)}
 td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--text)}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:var(--bg)}
+tr:hover td{background:rgba(255,255,255,.03)}
 .td-r{text-align:right;font-family:var(--mono);font-size:11px}
 .td-c{text-align:center}
 
@@ -137,7 +137,7 @@ tr:hover td{background:var(--bg)}
 .note{font-size:11px;color:var(--text3);margin-top:10px;font-style:italic}
 
 /* Loading */
-.loading-overlay{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:200;transition:opacity .3s}
+.loading-overlay{position:fixed;inset:0;background:#0d0f14;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:200;transition:opacity .3s}
 .loading-overlay.hidden{opacity:0;pointer-events:none}
 .spinner{width:28px;height:28px;border-radius:50%;border:2px solid var(--border2);border-top-color:var(--orange);animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -146,6 +146,25 @@ tr:hover td{background:var(--bg)}
 /* Error */
 .error-bar{background:var(--red-l);border:1px solid #f3c4be;border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--red);margin-bottom:16px;display:none}
 .error-bar.show{display:block}
+
+/* ── Multi-select dropdown ── */
+.ms-wrap{position:relative}
+.ms-trigger{background:#1a1e28;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:5px 28px 5px 10px;font-family:var(--font);font-size:12px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:6px;min-width:160px;white-space:nowrap;user-select:none;transition:border-color .15s}
+.ms-trigger:hover{border-color:rgba(255,255,255,.2)}
+.ms-trigger.open{border-color:rgba(255,255,255,.3)}
+.ms-arrow{margin-left:auto;font-size:9px;color:var(--text3);transition:transform .15s}
+.ms-trigger.open .ms-arrow{transform:rotate(180deg)}
+.ms-badge{background:var(--orange);color:#fff;border-radius:10px;font-size:10px;font-weight:600;padding:1px 6px;font-family:var(--head)}
+.ms-dropdown{position:absolute;top:calc(100% + 4px);left:0;min-width:180px;background:#1a1e28;border:1px solid rgba(255,255,255,.14);border-radius:var(--rl);box-shadow:0 8px 32px rgba(0,0,0,.6);z-index:100;display:none;overflow:hidden}
+.ms-dropdown.open{display:block}
+.ms-options{max-height:220px;overflow-y:auto}
+.ms-option{display:flex;align-items:center;gap:8px;padding:8px 12px;cursor:pointer;font-size:12px;transition:background .1s}
+.ms-option:hover{background:rgba(255,255,255,.05)}
+.ms-option input[type=checkbox]{accent-color:var(--orange);width:13px;height:13px;cursor:pointer}
+.ms-actions{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.08)}
+.ms-action-btn{flex:1;padding:7px;font-size:11px;font-family:var(--font);border:none;background:none;cursor:pointer;color:var(--text2);transition:background .1s}
+.ms-action-btn:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.ms-action-btn:first-child{border-right:1px solid rgba(255,255,255,.08)}
 </style>
 </head>
 <body>
@@ -169,15 +188,39 @@ tr:hover td{background:var(--bg)}
 
 <div class="filter-bar">
   <span class="filter-label">Filtros</span>
-  <select class="filter-sel" id="f-periodo" onchange="aplicarFiltros()">
-    <option value="">Todos los períodos</option>
-  </select>
+
+  <div class="ms-wrap" id="ms-periodo-wrap">
+    <div class="ms-trigger" id="ms-periodo-trigger" onclick="toggleMs('periodo')">
+      <span id="ms-periodo-label">Todos los períodos</span>
+      <span class="ms-arrow">▼</span>
+    </div>
+    <div class="ms-dropdown" id="ms-periodo-dropdown">
+      <div class="ms-options" id="ms-periodo-options"></div>
+      <div class="ms-actions">
+        <button class="ms-action-btn" onclick="selectAllMs('periodo')">Todos</button>
+        <button class="ms-action-btn" onclick="clearMs('periodo')">Limpiar</button>
+      </div>
+    </div>
+  </div>
+
   <div class="filter-sep"></div>
-  <select class="filter-sel" id="f-estado" onchange="aplicarFiltros()">
-    <option value="En curso">En curso</option>
-    <option value="Entregado">Entregados</option>
-    <option value="">Todos los proyectos</option>
-  </select>
+
+  <div class="ms-wrap" id="ms-estado-wrap">
+    <div class="ms-trigger" id="ms-estado-trigger" onclick="toggleMs('estado')">
+      <span id="ms-estado-label">En curso</span>
+      <span class="ms-arrow">▼</span>
+    </div>
+    <div class="ms-dropdown" id="ms-estado-dropdown">
+      <div class="ms-options" id="ms-estado-options">
+        <label class="ms-option"><input type="checkbox" value="En curso" checked onchange="onEstadoChange()"> En curso</label>
+        <label class="ms-option"><input type="checkbox" value="Entregado" onchange="onEstadoChange()"> Entregado</label>
+      </div>
+      <div class="ms-actions">
+        <button class="ms-action-btn" onclick="selectAllEstado()">Todos</button>
+        <button class="ms-action-btn" onclick="clearEstado()">Limpiar</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="shell">
@@ -268,17 +311,18 @@ tr:hover td{background:var(--bg)}
       <table>
         <thead>
           <tr>
-            <th>Proyecto</th>
-            <th>Cliente</th>
-            <th class="td-c">Fecha tentativa</th>
+            <th>Proyecto</th><th>Cliente</th>
+            <th class="td-c">F. tentativa</th>
+            <th class="td-c">F. real entrega</th>
             <th class="td-c">Días restantes</th>
             <th class="td-c">Estado proyecto</th>
+            <th class="td-c">Entrega</th>
           </tr>
         </thead>
         <tbody id="tbl-cumpl"></tbody>
       </table>
     </div>
-    <p class="note">* Sin fecha de entrega real confirmada, los días restantes se calculan desde la fecha tentativa.</p>
+    <p class="note">* Para OTs en curso: "A tiempo" si días restantes ≥ 0, "Entrega atrasada" si vencida. Para entregadas: contraste entre fecha tentativa y fecha real de entrega.</p>
   </div>
 
   <!-- Materiales -->
@@ -302,6 +346,84 @@ tr:hover td{background:var(--bg)}
 </div>
 
 <script>
+
+/* ── Multi-select state ── */
+let selectedPeriodos = new Set();
+let selectedEstados  = new Set(['En curso']);
+
+function toggleMs(key) {
+  const dd = document.getElementById('ms-' + key + '-dropdown');
+  const tr = document.getElementById('ms-' + key + '-trigger');
+  const isOpen = dd.classList.contains('open');
+  document.querySelectorAll('.ms-dropdown').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.ms-trigger').forEach(t => t.classList.remove('open'));
+  if (!isOpen) { dd.classList.add('open'); tr.classList.add('open'); }
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.ms-wrap')) {
+    document.querySelectorAll('.ms-dropdown').forEach(d => d.classList.remove('open'));
+    document.querySelectorAll('.ms-trigger').forEach(t => t.classList.remove('open'));
+  }
+});
+function filterMsOptions(key, q) {
+  document.querySelectorAll('#ms-' + key + '-options .ms-option').forEach(opt => {
+    opt.style.display = opt.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
+function selectAllMs(key) {
+  document.querySelectorAll('#ms-' + key + '-options input').forEach(cb => cb.checked = true);
+  if (key === 'periodo') onPeriodoChange();
+}
+function clearMs(key) {
+  document.querySelectorAll('#ms-' + key + '-options input').forEach(cb => cb.checked = false);
+  if (key === 'periodo') onPeriodoChange();
+}
+function selectAllEstado() {
+  document.querySelectorAll('#ms-estado-options input').forEach(cb => cb.checked = true);
+  onEstadoChange();
+}
+function clearEstado() {
+  document.querySelectorAll('#ms-estado-options input').forEach(cb => cb.checked = false);
+  onEstadoChange();
+}
+function onPeriodoChange() {
+  selectedPeriodos = new Set([...document.querySelectorAll('#ms-periodo-options input:checked')].map(cb => cb.value));
+  const lbl = selectedPeriodos.size === 0 ? 'Todos los períodos' : selectedPeriodos.size + ' período' + (selectedPeriodos.size > 1 ? 's' : '');
+  document.getElementById('ms-periodo-label').textContent = lbl;
+  aplicarFiltros();
+}
+function onEstadoChange() {
+  selectedEstados = new Set([...document.querySelectorAll('#ms-estado-options input:checked')].map(cb => cb.value));
+  const lbl = selectedEstados.size === 0 ? 'Todos' : selectedEstados.size === 2 ? 'Todos' : [...selectedEstados].join(' + ');
+  document.getElementById('ms-estado-label').textContent = lbl;
+  aplicarFiltros();
+}
+
+/* ── Sort state ── */
+const sortState = {
+  avance:   { col: 'anomes', dir: -1 },
+  cumpl:    { col: 'anomes', dir: -1 },
+};
+function sortTable(tableId, col) {
+  const st = sortState[tableId];
+  if (st.col === col) st.dir *= -1;
+  else { st.col = col; st.dir = (col === 'anomes' || col === 'nombre') ? -1 : 1; }
+  aplicarFiltros();
+}
+function thS(tid, col, label, cls) {
+  const st = sortState[tid];
+  const arr = st.col === col ? (st.dir === 1 ? ' ↑' : ' ↓') : '';
+  const c2 = cls ? ` class="${cls}"` : '';
+  return `<th${c2} style="cursor:pointer;user-select:none" onclick="sortTable('${tid}','${col}')">${label}${arr}</th>`;
+}
+function sortRows(rows, col, dir, getVal) {
+  return [...rows].sort((a, b) => {
+    const va = getVal(a, col), vb = getVal(b, col);
+    if (typeof va === 'string') return dir * va.localeCompare(vb);
+    return dir * ((va || 0) - (vb || 0));
+  });
+}
+
 /* ── CONFIG ── */
 const API_URL = 'https://script.google.com/macros/s/AKfycbxDtw2Mb613_s5E3maDB66o7nLHC9ACmhffL2Aa7goK23epQdIKuIYEInNXoGjUhsWjfQ/exec';
 
@@ -345,6 +467,64 @@ const MAT_PIE_COLORS = [
 
 let RAW = null;
 let charts = {};
+let selectedPeriodos = new Set();
+let selectedEstados  = new Set(['En curso']);
+
+/* ── Sort state ── */
+const sortState = {
+  avance:  { col: 'anomes', dir: -1 },
+  cumpl:   { col: 'anomes', dir: -1 },
+};
+function sortTable(id, col) {
+  const st=sortState[id];
+  if(st.col===col) st.dir*=-1;
+  else { st.col=col; st.dir=col==='anomes'?-1:1; }
+  aplicarFiltros();
+}
+function thS(id,col,label,cls=''){
+  const st=sortState[id];
+  const arrow=st.col===col?(st.dir===1?' ↑':' ↓'):'';
+  return `<th class="${cls}" style="cursor:pointer;user-select:none" onclick="sortTable('${id}','${col}')">${label}${arrow}</th>`;
+}
+function sortRows(rows,col,dir,getVal){
+  return [...rows].sort((a,b)=>{
+    const va=getVal(a,col),vb=getVal(b,col);
+    if(typeof va==='string') return dir*va.localeCompare(vb);
+    return dir*((va||0)-(vb||0));
+  });
+}
+
+/* ── Multi-select logic ── */
+function toggleMs(key){
+  const dd=document.getElementById(`ms-${key}-dropdown`);
+  const tr=document.getElementById(`ms-${key}-trigger`);
+  const isOpen=dd.classList.contains('open');
+  document.querySelectorAll('.ms-dropdown').forEach(d=>d.classList.remove('open'));
+  document.querySelectorAll('.ms-trigger').forEach(t=>t.classList.remove('open'));
+  if(!isOpen){dd.classList.add('open');tr.classList.add('open');}
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.ms-wrap')){
+    document.querySelectorAll('.ms-dropdown').forEach(d=>d.classList.remove('open'));
+    document.querySelectorAll('.ms-trigger').forEach(t=>t.classList.remove('open'));
+  }
+});
+function onPeriodoChange(){
+  selectedPeriodos=new Set([...document.querySelectorAll('#ms-periodo-options input:checked')].map(cb=>cb.value));
+  const lbl=selectedPeriodos.size===0?'Todos los períodos':`${selectedPeriodos.size} período${selectedPeriodos.size>1?'s':''}`;
+  document.getElementById('ms-periodo-label').textContent=lbl;
+  aplicarFiltros();
+}
+function onEstadoChange(){
+  selectedEstados=new Set([...document.querySelectorAll('#ms-estado-options input:checked')].map(cb=>cb.value));
+  const lbl=selectedEstados.size===0?'Todos':selectedEstados.size===2?'Todos':[...selectedEstados].join(' + ');
+  document.getElementById('ms-estado-label').textContent=lbl;
+  aplicarFiltros();
+}
+function selectAllMs(key){ document.querySelectorAll(`#ms-${key}-options input`).forEach(cb=>cb.checked=true); onPeriodoChange(); }
+function clearMs(key){ document.querySelectorAll(`#ms-${key}-options input`).forEach(cb=>cb.checked=false); onPeriodoChange(); }
+function selectAllEstado(){ document.querySelectorAll('#ms-estado-options input').forEach(cb=>cb.checked=true); onEstadoChange(); }
+function clearEstado(){ document.querySelectorAll('#ms-estado-options input').forEach(cb=>cb.checked=false); onEstadoChange(); }
 
 /* ── Helpers ── */
 const fmtH  = v => (+v||0).toFixed(1) + ' hs';
@@ -387,15 +567,14 @@ async function cargarDatos(){
     RAW=await r.json();
     if(RAW.error) throw new Error(RAW.error);
 
-    // Poblar períodos desde OTs (col AP Año Mes)
-    const fp=document.getElementById('f-periodo');
-    const cur=fp.value;
-    fp.innerHTML='<option value="">Todos los períodos</option>';
+    // Poblar períodos como checkboxes
+    const opts=document.getElementById('ms-periodo-options');
+    opts.innerHTML='';
     (RAW.periodos||[]).forEach(p=>{
-      const o=document.createElement('option');
-      o.value=o.textContent=p;
-      if(p===cur) o.selected=true;
-      fp.appendChild(o);
+      const lbl=document.createElement('label');
+      lbl.className='ms-option';
+      lbl.innerHTML=`<input type="checkbox" value="${p}" onchange="onPeriodoChange()"> ${p}`;
+      opts.appendChild(lbl);
     });
 
     document.getElementById('last-upd').textContent=
@@ -409,31 +588,19 @@ async function cargarDatos(){
 
 function aplicarFiltros(){
   if(!RAW) return;
-  const periodo = document.getElementById('f-periodo').value;
-  const estado  = document.getElementById('f-estado').value;
 
-  // 1. Filtrar OTs por estado Y por período (col AP "Año Mes")
-  let ots = (RAW.ots||[]);
-  if(estado)  ots = ots.filter(o=> o['Estado de proyecto aprobado']===estado);
-  if(periodo) ots = ots.filter(o=> String(o['Año Mes']||'').trim()===periodo);
+  // Filtrar OTs por estado y períodos seleccionados
+  let ots=(RAW.ots||[]);
+  if(selectedEstados.size>0) ots=ots.filter(o=>selectedEstados.has(o['Estado de proyecto aprobado']||''));
+  if(selectedPeriodos.size>0) ots=ots.filter(o=>selectedPeriodos.has(String(o['Año Mes']||'').trim()));
 
-  // Set de nombres de proyectos filtrados — para cruzar histórico y planificación
-  const nombresOTs = new Set(ots.map(o=> String(o['Nombre proyecto']||'').trim()));
+  const nombresOTs=new Set(ots.map(o=>String(o['Nombre proyecto']||'').trim()));
 
-  // 2. Filtrar planificación: por nombre de proyecto que esté en las OTs filtradas
-  //    y por período si la planif tiene col "Año Mes"
-  let plan = (RAW.planificacion||[]).filter(p=>
-    nombresOTs.has(String(p['Nombre proyecto']||'').trim())
-  );
-  if(periodo) plan = plan.filter(p=> String(p['Año Mes']||'').trim()===periodo);
+  let plan=(RAW.planificacion||[]).filter(p=>nombresOTs.has(String(p['Nombre proyecto']||'').trim()));
+  if(selectedPeriodos.size>0) plan=plan.filter(p=>selectedPeriodos.has(String(p['Año Mes']||'').trim()));
 
-  // 3. Filtrar histórico: solo registros cuyo "Orden de trabajo" coincida
-  //    con algún "Nombre proyecto" de las OTs filtradas
-  let hist = (RAW.historico||[]).filter(h=>
-    nombresOTs.has(String(h['Orden de trabajo']||'').trim())
-  );
-  // Adicionalmente filtrar por período del histórico si se seleccionó uno
-  if(periodo) hist = hist.filter(h=> String(h['Año Mes']||'').trim()===periodo);
+  let hist=(RAW.historico||[]).filter(h=>nombresOTs.has(String(h['Orden de trabajo']||'').trim()));
+  if(selectedPeriodos.size>0) hist=hist.filter(h=>selectedPeriodos.has(String(h['Año Mes']||'').trim()));
 
   renderizar(ots, hist, plan);
   document.getElementById('loading').classList.add('hidden');
@@ -469,37 +636,37 @@ function renderizar(ots, hist, plan){
   document.getElementById('k-desvio').textContent  = otsEnDesvio.length;
   document.getElementById('k-mat').textContent     = fmtM(totMat);
 
-  /* Horas por área — 3 charts */
+  /* Horas por área — 3 charts con escala compartida */
   const areasPres = AREAS.map(ar=>ots.reduce((a,o)=>a+(+o[AREA_COLS_OT[ar]]||0),0));
   const areasPlan = AREAS.map(ar=>plan.reduce((a,p)=>a+(+p[PLAN_COLS[ar]]||0),0));
   const areasReal = AREAS.map(ar=>hist.filter(h=>h['Tarea OK']===ar).reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0));
 
-  const barCfg = data=>({
+  // Escala común: máximo de los 3 conjuntos, redondeado hacia arriba
+  const globalMax = Math.max(...areasPres, ...areasPlan, ...areasReal, 1);
+  const scaleMax  = Math.ceil(globalMax / 50) * 50;
+
+  const barCfg = (data, color) => ({
     type:'bar',
-    data:{labels:AREAS,datasets:[{data,backgroundColor:AREAS.map(a=>AREA_COLORS[a]),borderRadius:4}]},
+    data:{labels:AREAS, datasets:[{data, backgroundColor:AREAS.map(a=>AREA_COLORS[a]), borderRadius:4}]},
     options:{
-      responsive:true,maintainAspectRatio:false,indexAxis:'y',
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw.toFixed(1)+' hs'}}},
+      responsive:true, maintainAspectRatio:false, indexAxis:'y',
+      plugins:{legend:{display:false}, tooltip:{callbacks:{label:ctx=>' '+ctx.raw.toFixed(1)+' hs'}}},
       scales:{
-        x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:10},color:'#a09b95',callback:v=>v+'h'}},
-        y:{grid:{display:false},ticks:{font:{size:11},color:'#6b6660'}}
+        x:{min:0, max:scaleMax, grid:{color:'rgba(255,255,255,.05)'}, ticks:{font:{size:10},color:'#4a4f60',callback:v=>v+'h'}},
+        y:{grid:{display:false}, ticks:{font:{size:11},color:'#7c8192'}}
       }
     }
   });
-  newChart('ch-pres',barCfg(areasPres));
-  newChart('ch-plan',barCfg(areasPlan));
-  newChart('ch-real',barCfg(areasReal));
+  newChart('ch-pres', barCfg(areasPres));
+  newChart('ch-plan', barCfg(areasPlan));
+  newChart('ch-real', barCfg(areasReal));
   document.getElementById('tot-pres').textContent=areasPres.reduce((a,b)=>a+b,0).toFixed(1)+' hs';
   document.getElementById('tot-plan').textContent=areasPlan.reduce((a,b)=>a+b,0).toFixed(1)+' hs';
   document.getElementById('tot-real').textContent=areasReal.reduce((a,b)=>a+b,0).toFixed(1)+' hs';
 
-  /* Tabla avance */
-  const tbody=document.getElementById('tbl-avance');
-  const desvDiv=document.getElementById('desvios-content');
-  tbody.innerHTML=''; desvDiv.innerHTML='';
-  let hayDesv=false;
-
-  ots.forEach(o=>{
+  /* Tabla avance — sortable */
+  // Precompute rows
+  const avanceRows = ots.map(o=>{
     const nom=String(o['Nombre proyecto']||'').trim();
     const histOT=hist.filter(h=>String(h['Orden de trabajo']||'').trim()===nom);
     let totP=0,totR=0;
@@ -510,92 +677,160 @@ function renderizar(ots, hist, plan){
       totP+=p; totR+=r; ad[ar]={p,r};
     });
     const pctTot=totP>0?totR/totP*100:null;
+    return {o, nom, totP, totR, pctTot, ad};
+  });
+
+  const stA = sortState.avance;
+  const getAvanceVal = (r, col) => {
+    if(col==='anomes')  return String(r.o['Año Mes']||'');
+    if(col==='nombre')  return r.nom;
+    if(col==='avance')  return r.pctTot||0;
+    if(col==='estado')  return r.o['Estado de proyecto aprobado']||'';
+    return '';
+  };
+  const sortedAvance = sortRows(avanceRows, stA.col, stA.dir, getAvanceVal);
+
+  const tbodyAvance = document.getElementById('tbl-avance');
+  document.querySelector('#tbl-avance').closest('table').querySelector('thead').innerHTML=`<tr>
+    ${thS('avance','nombre','Proyecto')}
+    <th>Cliente</th>
+    ${thS('avance','avance','Avance total','td-c')}
+    <th class="td-c">Carpintería</th>
+    <th class="td-c">Herrería</th>
+    <th class="td-c">Pintura</th>
+    <th class="td-c">Gráfica</th>
+    <th class="td-c">Electricidad</th>
+    ${thS('avance','anomes','Período','td-c')}
+    ${thS('avance','estado','Estado','td-c')}
+  </tr>`;
+
+  const desvDiv=document.getElementById('desvios-content');
+  tbodyAvance.innerHTML=''; desvDiv.innerHTML='';
+  let hayDesv=false;
+
+  sortedAvance.forEach(({o,nom,totP,totR,pctTot,ad})=>{
     const barW=Math.min(pctTot||0,100).toFixed(1);
-    const barC=!pctTot?'#d4cfc8':pctTot>110?'#b91c1c':pctTot>=90?'#9a6200':'#1a6b3c';
+    const barC=!pctTot?'#4a4f60':pctTot>110?'#e05252':pctTot>=90?'#f5a623':'#34c98a';
     const areaCells=AREAS.map(ar=>desvioCell(ad[ar].p,ad[ar].r)).join('');
     const estadoOT=o['Estado de proyecto aprobado']||'';
+    const anioMes=String(o['Año Mes']||'');
 
-    tbody.innerHTML+=`<tr>
+    tbodyAvance.innerHTML+=`<tr>
       <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(nom)}">${esc(shortOT(nom))}</td>
       <td>${esc(clienteOT(nom))}</td>
       <td><div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:${barW}%;background:${barC}"></div></div><span class="prog-pct">${pctTot!==null?fmtPct(pctTot):'—'}</span></div></td>
       ${areaCells}
-      <td class="td-c">${badgeTotal(pctTot, estadoOT)}</td>
+      <td class="td-c" style="font-family:var(--mono);font-size:11px">${esc(anioMes)}</td>
+      <td class="td-c">${badgeTotal(pctTot,estadoOT)}</td>
     </tr>`;
 
-    // Desvíos
     const areasDesv=AREAS.filter(ar=>ad[ar].p>0&&ad[ar].r/ad[ar].p*100>110);
     if(areasDesv.length){
       hayDesv=true;
       const cards=areasDesv.map(ar=>{
         const exc=(ad[ar].r-ad[ar].p).toFixed(1);
         const pct=(ad[ar].r/ad[ar].p*100).toFixed(1);
-        return `<div class="desvio-card">
-          <div class="desvio-card-area">${esc(ar)}</div>
-          <div class="desvio-card-val">${pct}%</div>
-          <div class="desvio-card-sub">+${exc} hs exceso</div>
-        </div>`;
+        return `<div class="desvio-card"><div class="desvio-card-area">${esc(ar)}</div><div class="desvio-card-val">${pct}%</div><div class="desvio-card-sub">+${exc} hs exceso</div></div>`;
       }).join('');
-      desvDiv.innerHTML+=`<div class="desvio-blk">
-        <div class="desvio-blk-title">${esc(shortOT(nom))}</div>
-        <div class="desvio-cards">${cards}</div>
-      </div>`;
+      desvDiv.innerHTML+=`<div class="desvio-blk"><div class="desvio-blk-title">${esc(shortOT(nom))}</div><div class="desvio-cards">${cards}</div></div>`;
     }
   });
   document.getElementById('box-desvios').style.display=hayDesv?'':'none';
 
-  /* Cumplimiento fechas */
-  const tcumpl=document.getElementById('tbl-cumpl');
-  tcumpl.innerHTML='';
+  /* Tabla cumplimiento — sortable, con "Fecha de entrega real" */
   const hoy=new Date(); hoy.setHours(0,0,0,0);
 
-  ots.forEach(o=>{
+  const cumplRows=ots.map(o=>{
     const nom=String(o['Nombre proyecto']||'').trim();
     const estado=o['Estado de proyecto aprobado']||'';
-    const fechaRaw=o['Fecha de entrega tentativa']||o['Fecha de entrega tentiva']||'';
-    let fechaFmt='—', diasBadge='<span class="badge badge-gray">Sin fecha</span>';
+    const fechaTentRaw=o['Fecha de entrega tentativa']||o['Fecha de entrega tentiva']||'';
+    const fechaRealRaw=o['Fecha de entrega real']||'';
+    const anioMes=String(o['Año Mes']||'');
 
-    if(fechaRaw){
-      const fd=new Date(fechaRaw);
-      if(!isNaN(fd)){
-        fd.setHours(0,0,0,0);
-        const diff=Math.round((fd-hoy)/86400000);
-        fechaFmt=fd.toLocaleDateString('es-AR',{day:'numeric',month:'short',year:'numeric'});
-        const entregada = estado==='Entregado'||estado==='Finalizado';
-        diasBadge = entregada
-          ? `<span class="badge badge-green">✓ Entregado</span>`
-          : diff<0
-          ? `<span class="badge badge-red">Vencida ${Math.abs(diff)}d</span>`
-          : diff===0
-          ? `<span class="badge badge-amber">Hoy</span>`
-          : diff<=5
-          ? `<span class="badge badge-amber">${diff}d</span>`
-          : `<span class="badge badge-green">${diff}d</span>`;
-      }
+    let diasRest=null, fechaTentFmt='—', fechaRealFmt='—';
+    let fdTent=null, fdReal=null;
+
+    if(fechaTentRaw){ try{ fdTent=new Date(fechaTentRaw); fdTent.setHours(0,0,0,0); if(isNaN(fdTent)) fdTent=null; }catch(e){} }
+    if(fechaRealRaw){ try{ fdReal=new Date(fechaRealRaw); fdReal.setHours(0,0,0,0); if(isNaN(fdReal)) fdReal=null; }catch(e){} }
+
+    if(fdTent){ fechaTentFmt=fdTent.toLocaleDateString('es-AR',{day:'numeric',month:'short',year:'numeric'}); diasRest=Math.round((fdTent-hoy)/86400000); }
+    if(fdReal){ fechaRealFmt=fdReal.toLocaleDateString('es-AR',{day:'numeric',month:'short',year:'numeric'}); }
+
+    return {o,nom,estado,fdTent,fdReal,diasRest,fechaTentFmt,fechaRealFmt,anioMes};
+  });
+
+  const stC=sortState.cumpl;
+  const getCumplVal=(r,col)=>{
+    if(col==='anomes')   return r.anioMes;
+    if(col==='nombre')   return r.nom;
+    if(col==='fechatent') return r.fdTent?r.fdTent.getTime():0;
+    if(col==='dias')     return r.diasRest||0;
+    if(col==='estado')   return r.estado;
+    return '';
+  };
+  const sortedCumpl=sortRows(cumplRows,stC.col,stC.dir,getCumplVal);
+
+  const tcumpl=document.getElementById('tbl-cumpl');
+  document.querySelector('#tbl-cumpl').closest('table').querySelector('thead').innerHTML=`<tr>
+    ${thS('cumpl','nombre','Proyecto')}
+    <th>Cliente</th>
+    ${thS('cumpl','fechatent','Fecha tentativa','td-c')}
+    <th class="td-c">Fecha real entrega</th>
+    ${thS('cumpl','dias','Días restantes','td-c')}
+    ${thS('cumpl','estado','Estado proyecto','td-c')}
+    <th class="td-c">Entrega</th>
+  </tr>`;
+
+  tcumpl.innerHTML=sortedCumpl.map(({o,nom,estado,fdTent,fdReal,diasRest,fechaTentFmt,fechaRealFmt,anioMes})=>{
+    // Badge días restantes
+    let diasBadge='<span class="badge badge-gray">Sin fecha</span>';
+    const entregada=estado==='Entregado'||estado==='Finalizado';
+    if(fdTent){
+      if(entregada) diasBadge='<span class="badge badge-green">✓ Entregado</span>';
+      else if(diasRest<0) diasBadge=`<span class="badge badge-red">Vencida ${Math.abs(diasRest)}d</span>`;
+      else if(diasRest===0) diasBadge='<span class="badge badge-amber">Hoy</span>';
+      else if(diasRest<=5) diasBadge=`<span class="badge badge-amber">${diasRest}d</span>`;
+      else diasBadge=`<span class="badge badge-green">${diasRest}d</span>`;
     }
 
+    // Estado proyecto badge
     let estadoBadge;
-    if(estado==='En curso')     estadoBadge='<span class="badge badge-blue">En curso</span>';
-    else if(estado==='Entregado'||estado==='Finalizado') estadoBadge='<span class="badge badge-green">✓ Entregado</span>';
+    if(entregada) estadoBadge='<span class="badge badge-green">✓ Entregado</span>';
+    else if(estado==='En curso') estadoBadge='<span class="badge badge-blue">En curso</span>';
     else estadoBadge=`<span class="badge badge-gray">${esc(estado)||'—'}</span>`;
 
-    tcumpl.innerHTML+=`<tr>
-      <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(nom)}">${esc(shortOT(nom))}</td>
+    // Entrega badge — contraste tentativa vs real si está entregada; si en curso usa días restantes
+    let entregaBadge;
+    if(entregada){
+      if(fdReal && fdTent){
+        const diffDias=Math.round((fdReal-fdTent)/86400000);
+        if(diffDias<=0) entregaBadge=`<span class="badge badge-green">✓ A tiempo${diffDias<0?' ('+Math.abs(diffDias)+'d antes)':''}</span>`;
+        else entregaBadge=`<span class="badge badge-red">Demorada ${diffDias}d</span>`;
+      } else {
+        entregaBadge='<span class="badge badge-gray">Sin fecha real</span>';
+      }
+    } else {
+      // En curso
+      if(!fdTent) entregaBadge='<span class="badge badge-gray">Sin fecha</span>';
+      else if(diasRest<0) entregaBadge=`<span class="badge badge-red">Entrega atrasada ${Math.abs(diasRest)}d</span>`;
+      else entregaBadge='<span class="badge badge-green">A tiempo</span>';
+    }
+
+    return `<tr>
+      <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(nom)}">${esc(shortOT(nom))}</td>
       <td>${esc(clienteOT(nom))}</td>
-      <td class="td-c" style="font-family:var(--mono);font-size:11px">${fechaFmt}</td>
+      <td class="td-c" style="font-family:var(--mono);font-size:11px">${fechaTentFmt}</td>
+      <td class="td-c" style="font-family:var(--mono);font-size:11px">${fechaRealFmt}</td>
       <td class="td-c">${diasBadge}</td>
       <td class="td-c">${estadoBadge}</td>
+      <td class="td-c">${entregaBadge}</td>
     </tr>`;
-  });
+  }).join('');
 
-  /* Materiales — torta + lista */
-  // Sumar por tipo de material en todas las OTs filtradas
-  const matTotales={};
-  MAT_COLS.forEach(col=>{
-    const sum=ots.reduce((a,o)=>a+(+o[col]||0),0);
-    if(sum>0) matTotales[col]=sum;
-  });
-  const matEntries=Object.entries(matTotales).sort((a,b)=>b[1]-a[1]);
+  /* Materiales */
+  const matEntries=Object.entries(
+    MAT_COLS.reduce((acc,col)=>{ const s=ots.reduce((a,o)=>a+(+o[col]||0),0); if(s>0) acc[col]=s; return acc; },{})
+  ).sort((a,b)=>b[1]-a[1]);
   const totMatVal=matEntries.reduce((a,[,v])=>a+v,0);
   document.getElementById('tot-mat').textContent=fmtM(totMatVal);
 
@@ -603,32 +838,18 @@ function renderizar(ots, hist, plan){
     type:'doughnut',
     data:{
       labels:matEntries.map(([k])=>MAT_LABELS_SHORT[k]||k),
-      datasets:[{
-        data:matEntries.map(([,v])=>v),
-        backgroundColor:MAT_PIE_COLORS.slice(0,matEntries.length),
-        borderWidth:1,borderColor:'#faf9f7'
-      }]
+      datasets:[{data:matEntries.map(([,v])=>v),backgroundColor:MAT_PIE_COLORS.slice(0,matEntries.length),borderWidth:1,borderColor:'#161a24'}]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{position:'right',labels:{font:{size:10},color:'#6b6660',boxWidth:10,padding:8}},
-        tooltip:{callbacks:{label:ctx=>{
-          const pct=(ctx.raw/totMatVal*100).toFixed(1);
-          return ` $${(ctx.raw/1000000).toFixed(2)}M (${pct}%)`;
-        }}}
-      }
-    }
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'right',labels:{font:{size:10},color:'#7c8192',boxWidth:10,padding:8}},
+               tooltip:{callbacks:{label:ctx=>{ const pct=(ctx.raw/totMatVal*100).toFixed(1); return ' $'+(ctx.raw/1000000).toFixed(2)+'M ('+pct+'%)'; }}}}}
   });
 
-  // Lista por OT
-  const matPorOT=ots
+  document.getElementById('mat-list').innerHTML=ots
     .map(o=>({nombre:shortOT(o['Nombre proyecto']),val:+o['Costo Total Materiales (Sin IVA)']||0}))
-    .filter(d=>d.val>0).sort((a,b)=>b.val-a.val);
-
-  document.getElementById('mat-list').innerHTML=matPorOT.map(d=>
-    `<div class="mat-row"><span class="mat-name">${esc(d.nombre)}</span><span class="mat-val">${fmtM(d.val)}</span></div>`
-  ).join('')||'<div style="color:var(--text3);font-size:12px;padding:8px 0">Sin datos de materiales</div>';
+    .filter(d=>d.val>0).sort((a,b)=>b.val-a.val)
+    .map(d=>`<div class="mat-row"><span class="mat-name">${esc(d.nombre)}</span><span class="mat-val">${fmtM(d.val)}</span></div>`)
+    .join('')||'<div style="color:var(--text3);font-size:12px;padding:8px 0">Sin datos de materiales</div>';
 }
 
 function mostrarError(msg){
