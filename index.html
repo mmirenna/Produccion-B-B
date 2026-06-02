@@ -165,6 +165,14 @@ tr:hover td{background:rgba(255,255,255,.03)}
 .ms-action-btn{flex:1;padding:7px;font-size:11px;font-family:var(--font);border:none;background:none;cursor:pointer;color:var(--text2);transition:background .1s}
 .ms-action-btn:hover{background:rgba(255,255,255,.05);color:var(--text)}
 .ms-action-btn:first-child{border-right:1px solid rgba(255,255,255,.08)}
+
+/* ── Tabs ── */
+.tabs-bar{background:#0a0c10;border-bottom:1px solid rgba(255,255,255,.08);padding:0 28px;display:flex;gap:0}
+.tab-btn{padding:14px 20px;font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--text3);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--orange);border-bottom-color:var(--orange)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
 </style>
 </head>
 <body>
@@ -223,7 +231,13 @@ tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<div class="shell">
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="switchTab('produccion')">Producción</button>
+  <button class="tab-btn" onclick="switchTab('diseno')">Diseño</button>
+</div>
+
+<div class="tab-panel active" id="tab-produccion">
+<div class="shell" style="padding-top:24px">
   <div class="error-bar" id="error-bar"></div>
 
   <!-- KPIs -->
@@ -325,28 +339,6 @@ tr:hover td{background:rgba(255,255,255,.03)}
     <p class="note">* Para OTs en curso: "A tiempo" si días restantes ≥ 0, "Entrega atrasada" si vencida. Para entregadas: contraste entre fecha tentativa y fecha real de entrega.</p>
   </div>
 
-  <!-- Diseño reales vs presupuestado -->
-  <div class="sec-title">Horas diseño — presupuestado vs real</div>
-  <div class="grid2">
-    <div class="box">
-      <div class="box-header">
-        <div><div class="box-title">Horas diseño por OT</div><div class="box-sub">Presupuestadas vs reales</div></div>
-      </div>
-      <div class="legend">
-        <div class="leg-item"><div class="leg-dot" style="background:#4f7cff"></div>Presupuestadas</div>
-        <div class="leg-item"><div class="leg-dot" style="background:#34c98a"></div>Reales</div>
-      </div>
-      <div class="chart-wrap h260"><canvas id="ch-diseno-comp"></canvas></div>
-    </div>
-    <div class="box">
-      <div class="box-header">
-        <div><div class="box-title">Detalle por diseñador</div><div class="box-sub">Horas reales registradas</div></div>
-        <div class="box-total" id="tot-diseno-real">—</div>
-      </div>
-      <div class="chart-wrap h260"><canvas id="ch-diseno-op"></canvas></div>
-    </div>
-  </div>
-
   <!-- Materiales -->
   <div class="sec-title">Materiales cotizados</div>
   <div class="grid2">
@@ -365,9 +357,89 @@ tr:hover td{background:rgba(255,255,255,.03)}
     </div>
   </div>
 
+</div
 </div>
 
+<div class="tab-panel" id="tab-diseno">
+<div class="shell" style="padding-top:24px">
+
+  <!-- KPIs diseño -->
+  <div class="sec-title">Resumen diseño</div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-label">Hs. presupuestadas</div><div class="kpi-value blue" id="d-pres">—</div><div class="kpi-sub">Según OTs filtradas</div></div>
+    <div class="kpi"><div class="kpi-label">Hs. reales</div><div class="kpi-value green" id="d-real">—</div><div class="kpi-sub" id="d-real-sub">—</div></div>
+    <div class="kpi"><div class="kpi-label">Desvío total</div><div class="kpi-value" id="d-desvio-hs">—</div><div class="kpi-sub" id="d-desvio-sub">—</div></div>
+    <div class="kpi"><div class="kpi-label">OTs con excedencia</div><div class="kpi-value red" id="d-exc">—</div><div class="kpi-sub">&gt;110% ejecutado</div></div>
+    <div class="kpi"><div class="kpi-label">OTs sin datos reales</div><div class="kpi-value amber" id="d-sindatos">—</div><div class="kpi-sub">Horas presup. sin registro</div></div>
+  </div>
+
+  <!-- Gráfico top 10 -->
+  <div class="sec-title">Top 10 proyectos por horas diseño presupuestadas</div>
+  <div class="box full">
+    <div class="box-header">
+      <div><div class="box-title">Presupuestadas vs reales — top 10</div><div class="box-sub">Ordenado de mayor a menor por horas presupuestadas</div></div>
+    </div>
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#4f7cff"></div>Presupuestadas</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#34c98a"></div>Reales</div>
+    </div>
+    <div class="chart-wrap h260"><canvas id="ch-d-top10"></canvas></div>
+  </div>
+
+  <!-- Detalle por proyecto -->
+  <div class="sec-title">Avance y desvíos — diseño por proyecto</div>
+  <div class="box full">
+    <div class="box-header">
+      <div>
+        <div class="box-title">Grado de avance vs. presupuesto — horas diseño</div>
+        <div class="box-sub">Verde &lt;90% · Amarillo 90–110% · Rojo &gt;110% del presupuesto consumido</div>
+      </div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Cliente</th>
+            <th>Avance</th>
+            <th class="td-r">Hs pres.</th>
+            <th class="td-r">Hs reales</th>
+            <th class="td-r">Desvío hs</th>
+            <th class="td-c">Período</th>
+            <th class="td-c">Estado</th>
+          </tr>
+        </thead>
+        <tbody id="tbl-diseno-avance"></tbody>
+      </table>
+    </div>
+    <p class="note">* Avance = horas reales / horas presupuestadas × 100. Rojo indica excedencia (&gt;110%).</p>
+  </div>
+
+  <!-- Por diseñador -->
+  <div class="sec-title">Horas reales por diseñador</div>
+  <div class="box full">
+    <div class="box-header">
+      <div><div class="box-title">Distribución de horas reales</div></div>
+      <div class="box-total" id="tot-d-op">—</div>
+    </div>
+    <div class="chart-wrap h200"><canvas id="ch-d-op"></canvas></div>
+  </div>
+
+</div>
+</div>>
+
 <script>
+
+/* ── Tab switching ── */
+function switchTab(id){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const ids=['produccion','diseno'];
+    b.classList.toggle('active',ids[i]===id);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>{
+    p.classList.toggle('active',p.id==='tab-'+id);
+  });
+}
 
 /* ── Multi-select state ── */
 let selectedPeriodos = new Set();
@@ -425,6 +497,7 @@ function onEstadoChange() {
 const sortState = {
   avance:   { col: 'anomes', dir: -1 },
   cumpl:    { col: 'anomes', dir: -1 },
+  diseno:   { col: 'anomes', dir: -1 },
 };
 function sortTable(tableId, col) {
   const st = sortState[tableId];
@@ -856,29 +929,43 @@ function renderizar(ots, hist, plan, histDiseno){
 }
 
 function renderDiseno(ots, histDiseno){
-  // Horas diseño presupuestadas: columna "Horas de Diseño" de cada OT
-  const disenoData = ots.map(o=>{
+  histDiseno = histDiseno || [];
+
+  // Pre-compute per OT
+  const rows = ots.map(o=>{
     const nom  = String(o['Nombre proyecto']||'').trim();
     const pres = +o['Horas de Diseño']||0;
-    const real = histDiseno
-      .filter(h=>String(h['Orden de trabajo']||'').trim()===nom)
-      .reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
-    return {nom, pres, real};
-  }).filter(d=>d.pres>0||d.real>0).sort((a,b)=>b.pres-a.pres);
+    const real = histDiseno.filter(h=>String(h['Orden de trabajo']||'').trim()===nom)
+                           .reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
+    const avance = pres>0 ? real/pres*100 : null;
+    const desvio = real - pres;
+    return {o, nom, pres, real, avance, desvio};
+  });
 
-  const totReal = disenoData.reduce((a,d)=>a+d.real,0);
-  document.getElementById('tot-diseno-real').textContent = totReal.toFixed(1)+' hs';
+  const totPres = rows.reduce((a,r)=>a+r.pres,0);
+  const totReal = rows.reduce((a,r)=>a+r.real,0);
+  const totDesvio = totReal - totPres;
+  const excOTs = rows.filter(r=>r.avance!==null&&r.avance>110).length;
+  const sinDatos = rows.filter(r=>r.pres>0&&r.real===0).length;
 
-  // Chart comparativo por OT
-  newChart('ch-diseno-comp',{
-    type:'bar',
-    data:{
-      labels: disenoData.map(d=>shortOT(d.nom)),
+  document.getElementById('d-pres').textContent      = totPres.toFixed(1)+' hs';
+  document.getElementById('d-real').textContent      = totReal.toFixed(1)+' hs';
+  document.getElementById('d-real-sub').textContent  = totPres>0?fmtPct(totReal/totPres*100)+' ejecutado':'—';
+  document.getElementById('d-desvio-hs').textContent = (totDesvio>0?'+':'')+totDesvio.toFixed(1)+' hs';
+  document.getElementById('d-desvio-hs').className   = 'kpi-value '+(totDesvio>0?'red':'green');
+  document.getElementById('d-desvio-sub').textContent= totDesvio>0?'Por encima del presupuesto':'Por debajo del presupuesto';
+  document.getElementById('d-exc').textContent       = excOTs;
+  document.getElementById('d-sindatos').textContent  = sinDatos;
+
+  // Top 10 por horas presupuestadas
+  const top10 = [...rows].filter(r=>r.pres>0||r.real>0)
+                          .sort((a,b)=>b.pres-a.pres).slice(0,10);
+  newChart('ch-d-top10',{type:'bar',
+    data:{labels:top10.map(r=>shortOT(r.nom)),
       datasets:[
-        {label:'Presupuestadas',data:disenoData.map(d=>+d.pres.toFixed(1)),backgroundColor:'#4f7cff',borderRadius:3},
-        {label:'Reales',        data:disenoData.map(d=>+d.real.toFixed(1)),backgroundColor:'#34c98a',borderRadius:3}
-      ]
-    },
+        {label:'Presupuestadas',data:top10.map(r=>+r.pres.toFixed(1)),backgroundColor:'#4f7cff',borderRadius:3},
+        {label:'Reales',        data:top10.map(r=>+r.real.toFixed(1)),backgroundColor:'#34c98a',borderRadius:3}
+      ]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw.toFixed(1)+' hs'}}},
       scales:{
@@ -888,20 +975,64 @@ function renderDiseno(ots, histDiseno){
     }
   });
 
-  // Chart por diseñador
-  const porDisenador={};
+  // Tabla avance diseño — ordenada por Año Mes desc
+  const stD = sortState.diseno || {col:'anomes',dir:-1};
+  const getVal = (r,col)=>{
+    if(col==='anomes')  return String(r.o['Año Mes']||'');
+    if(col==='nombre')  return r.nom;
+    if(col==='avance')  return r.avance||0;
+    if(col==='pres')    return r.pres;
+    if(col==='real')    return r.real;
+    if(col==='desvio')  return r.desvio;
+    return '';
+  };
+  const sortedD = sortRows(rows.filter(r=>r.pres>0||r.real>0), stD.col, stD.dir, getVal);
+
+  document.querySelector('#tbl-diseno-avance').closest('table').querySelector('thead').innerHTML=`<tr>
+    ${thS('diseno','nombre','Proyecto')}
+    <th>Cliente</th>
+    ${thS('diseno','avance','Avance','td-c')}
+    ${thS('diseno','pres','Hs pres.','td-r')}
+    ${thS('diseno','real','Hs reales','td-r')}
+    ${thS('diseno','desvio','Desvío hs','td-r')}
+    ${thS('diseno','anomes','Período','td-c')}
+    <th class="td-c">Estado</th>
+  </tr>`;
+
+  const tbD = document.getElementById('tbl-diseno-avance');
+  tbD.innerHTML = sortedD.map(r=>{
+    const av = r.avance;
+    const barW = Math.min(av||0,100).toFixed(1);
+    const barC = av===null?'#4a4f60':av>110?'#e05252':av>=90?'#f5a623':'#34c98a';
+    const estadoOT = r.o['Estado de proyecto aprobado']||'';
+    let estadoBadge;
+    if(estadoOT==='En curso') estadoBadge='<span class="badge badge-blue">En curso</span>';
+    else if(estadoOT==='Entregado'||estadoOT==='Finalizado') estadoBadge='<span class="badge badge-green">✓ Entregado</span>';
+    else estadoBadge=`<span class="badge badge-gray">${esc(estadoOT)||'—'}</span>`;
+    const desvioColor = r.desvio>0?'var(--red)':'var(--green)';
+    return `<tr>
+      <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(r.nom)}">${esc(shortOT(r.nom))}</td>
+      <td>${esc(clienteOT(r.nom))}</td>
+      <td><div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:${barW}%;background:${barC}"></div></div><span class="prog-pct">${av!==null?fmtPct(av):'—'}</span></div></td>
+      <td class="td-r" style="font-family:var(--mono)">${r.pres.toFixed(1)}</td>
+      <td class="td-r" style="font-family:var(--mono)">${r.real.toFixed(1)}</td>
+      <td class="td-r" style="font-family:var(--mono);color:${desvioColor}">${r.desvio>0?'+':''}${r.desvio.toFixed(1)}</td>
+      <td class="td-c" style="font-family:var(--mono);font-size:11px">${esc(String(r.o['Año Mes']||''))}</td>
+      <td class="td-c">${estadoBadge}</td>
+    </tr>`;
+  }).join('')||'<tr><td colspan="8" style="color:var(--text3);text-align:center;padding:20px">Sin datos</td></tr>';
+
+  // Por diseñador
+  const porOp={};
   histDiseno.forEach(h=>{
     const op=String(h['Operario']||'').trim();
-    if(!op) return;
-    porDisenador[op]=(porDisenador[op]||0)+(+h['Tiempo (hs)']||0);
+    if(op) porOp[op]=(porOp[op]||0)+(+h['Tiempo (hs)']||0);
   });
-  const disenoOps=Object.entries(porDisenador).sort((a,b)=>b[1]-a[1]);
-  newChart('ch-diseno-op',{
-    type:'bar',
-    data:{
-      labels:disenoOps.map(([k])=>k),
-      datasets:[{data:disenoOps.map(([,v])=>+v.toFixed(1)),backgroundColor:'#a78bfa',borderRadius:4}]
-    },
+  const opEntries=Object.entries(porOp).sort((a,b)=>b[1]-a[1]);
+  document.getElementById('tot-d-op').textContent = opEntries.reduce((a,[,v])=>a+v,0).toFixed(1)+' hs';
+  newChart('ch-d-op',{type:'bar',
+    data:{labels:opEntries.map(([k])=>k),
+      datasets:[{data:opEntries.map(([,v])=>+v.toFixed(1)),backgroundColor:'#a78bfa',borderRadius:4}]},
     options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
       plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw.toFixed(1)+' hs'}}},
       scales:{
