@@ -325,6 +325,28 @@ tr:hover td{background:rgba(255,255,255,.03)}
     <p class="note">* Para OTs en curso: "A tiempo" si días restantes ≥ 0, "Entrega atrasada" si vencida. Para entregadas: contraste entre fecha tentativa y fecha real de entrega.</p>
   </div>
 
+  <!-- Diseño reales vs presupuestado -->
+  <div class="sec-title">Horas diseño — presupuestado vs real</div>
+  <div class="grid2">
+    <div class="box">
+      <div class="box-header">
+        <div><div class="box-title">Horas diseño por OT</div><div class="box-sub">Presupuestadas vs reales</div></div>
+      </div>
+      <div class="legend">
+        <div class="leg-item"><div class="leg-dot" style="background:#4f7cff"></div>Presupuestadas</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#34c98a"></div>Reales</div>
+      </div>
+      <div class="chart-wrap h260"><canvas id="ch-diseno-comp"></canvas></div>
+    </div>
+    <div class="box">
+      <div class="box-header">
+        <div><div class="box-title">Detalle por diseñador</div><div class="box-sub">Horas reales registradas</div></div>
+        <div class="box-total" id="tot-diseno-real">—</div>
+      </div>
+      <div class="chart-wrap h260"><canvas id="ch-diseno-op"></canvas></div>
+    </div>
+  </div>
+
   <!-- Materiales -->
   <div class="sec-title">Materiales cotizados</div>
   <div class="grid2">
@@ -564,7 +586,6 @@ async function cargarDatos(){
 function aplicarFiltros(){
   if(!RAW) return;
 
-  // Filtrar OTs por estado y períodos seleccionados
   let ots=(RAW.ots||[]);
   if(selectedEstados.size>0) ots=ots.filter(o=>selectedEstados.has(o['Estado de proyecto aprobado']||''));
   if(selectedPeriodos.size>0) ots=ots.filter(o=>selectedPeriodos.has(String(o['Año Mes']||'').trim()));
@@ -577,17 +598,21 @@ function aplicarFiltros(){
   let hist=(RAW.historico||[]).filter(h=>nombresOTs.has(String(h['Orden de trabajo']||'').trim()));
   if(selectedPeriodos.size>0) hist=hist.filter(h=>selectedPeriodos.has(String(h['Año Mes']||'').trim()));
 
-  renderizar(ots, hist, plan);
+  let histDiseno=(RAW.historicoDiseno||[]).filter(h=>nombresOTs.has(String(h['Orden de trabajo']||'').trim()));
+  if(selectedPeriodos.size>0) histDiseno=histDiseno.filter(h=>selectedPeriodos.has(String(h['Año Mes']||'').trim()));
+
+  renderizar(ots, hist, plan, histDiseno);
   document.getElementById('loading').classList.add('hidden');
 }
 
 /* ── RENDER ── */
-function renderizar(ots, hist, plan){
+function renderizar(ots, hist, plan, histDiseno){
 
   /* KPIs */
   const totPres = ots.reduce((a,o)=>a+AREAS.reduce((b,ar)=>b+(+o[AREA_COLS_OT[ar]]||0),0),0);
   const totPlan = plan.reduce((a,p)=>a+AREAS.reduce((b,ar)=>b+(+p[PLAN_COLS[ar]]||0),0),0);
   const totReal = hist.filter(h=>AREAS.includes(h['Tarea OK'])).reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
+  const totRealDiseno = (histDiseno||[]).reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
   const totMat  = ots.reduce((a,o)=>a+(+o['Costo Total Materiales (Sin IVA)']||0),0);
 
   const otsEnDesvio = ots.filter(o=>{
@@ -825,6 +850,66 @@ function renderizar(ots, hist, plan){
     .filter(d=>d.val>0).sort((a,b)=>b.val-a.val)
     .map(d=>`<div class="mat-row"><span class="mat-name">${esc(d.nombre)}</span><span class="mat-val">${fmtM(d.val)}</span></div>`)
     .join('')||'<div style="color:var(--text3);font-size:12px;padding:8px 0">Sin datos de materiales</div>';
+
+  /* Diseño — presupuestado vs real */
+  renderDiseno(ots, histDiseno||[]);
+}
+
+function renderDiseno(ots, histDiseno){
+  // Horas diseño presupuestadas: columna "Horas de Diseño" de cada OT
+  const disenoData = ots.map(o=>{
+    const nom  = String(o['Nombre proyecto']||'').trim();
+    const pres = +o['Horas de Diseño']||0;
+    const real = histDiseno
+      .filter(h=>String(h['Orden de trabajo']||'').trim()===nom)
+      .reduce((a,h)=>a+(+h['Tiempo (hs)']||0),0);
+    return {nom, pres, real};
+  }).filter(d=>d.pres>0||d.real>0).sort((a,b)=>b.pres-a.pres);
+
+  const totReal = disenoData.reduce((a,d)=>a+d.real,0);
+  document.getElementById('tot-diseno-real').textContent = totReal.toFixed(1)+' hs';
+
+  // Chart comparativo por OT
+  newChart('ch-diseno-comp',{
+    type:'bar',
+    data:{
+      labels: disenoData.map(d=>shortOT(d.nom)),
+      datasets:[
+        {label:'Presupuestadas',data:disenoData.map(d=>+d.pres.toFixed(1)),backgroundColor:'#4f7cff',borderRadius:3},
+        {label:'Reales',        data:disenoData.map(d=>+d.real.toFixed(1)),backgroundColor:'#34c98a',borderRadius:3}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw.toFixed(1)+' hs'}}},
+      scales:{
+        x:{grid:{display:false},ticks:{font:{size:10},color:'#4a4f60',maxRotation:35,autoSkip:false}},
+        y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{font:{size:11},color:'#7c8192',callback:v=>v+'h'}}
+      }
+    }
+  });
+
+  // Chart por diseñador
+  const porDisenador={};
+  histDiseno.forEach(h=>{
+    const op=String(h['Operario']||'').trim();
+    if(!op) return;
+    porDisenador[op]=(porDisenador[op]||0)+(+h['Tiempo (hs)']||0);
+  });
+  const disenoOps=Object.entries(porDisenador).sort((a,b)=>b[1]-a[1]);
+  newChart('ch-diseno-op',{
+    type:'bar',
+    data:{
+      labels:disenoOps.map(([k])=>k),
+      datasets:[{data:disenoOps.map(([,v])=>+v.toFixed(1)),backgroundColor:'#a78bfa',borderRadius:4}]
+    },
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw.toFixed(1)+' hs'}}},
+      scales:{
+        x:{grid:{color:'rgba(255,255,255,.05)'},ticks:{font:{size:11},color:'#7c8192',callback:v=>v+'h'}},
+        y:{grid:{display:false},ticks:{font:{size:11},color:'#7c8192'}}
+      }
+    }
+  });
 }
 
 function mostrarError(msg){
