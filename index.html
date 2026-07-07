@@ -791,7 +791,10 @@ function renderizar(ots, hist, plan, histDiseno){
     tbodyAvance.innerHTML+=`<tr>
       <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(nom)}">${esc(shortOT(nom))}</td>
       <td>${esc(clienteOT(nom))}</td>
-      <td><div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:${barW}%;background:${barC}"></div></div><span class="prog-pct">${pctTot!==null?fmtPct(pctTot):'—'}</span></div></td>
+      <td style="min-width:140px">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--text2);margin-bottom:3px;text-align:center">${totR.toFixed(1)} / ${totP.toFixed(1)} hs</div>
+        <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:${barW}%;background:${barC}"></div></div><span class="prog-pct">${pctTot!==null?fmtPct(pctTot):'—'}</span></div>
+      </td>
       ${areaCells}
       <td class="td-c" style="font-family:var(--mono);font-size:11px">${esc(anioMes)}</td>
       <td class="td-c">${badgeTotal(pctTot,estadoOT)}</td>
